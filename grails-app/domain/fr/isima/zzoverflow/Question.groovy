@@ -7,11 +7,18 @@ class Question {
     int nbView
     boolean solved
     Answer correct
+    Date dateCreated
+    Date lastUpdated
 
     static hasMany = [tags : Tag, answers : Answer]
 
     static belongsTo = [user : User]
 
     static constraints = {
+        correct(nullable : true)
+    }
+
+    static mapping = {
+        autoTimestamp true
     }
 }
