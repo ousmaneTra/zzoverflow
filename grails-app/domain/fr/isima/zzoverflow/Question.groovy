@@ -5,6 +5,8 @@ class Question {
     String title
     String body
     int nbView
+    boolean solved
+    Answer correct
 
     static hasMany = [tags : Tag, answers : Answer]
 
