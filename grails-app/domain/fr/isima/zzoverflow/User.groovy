@@ -17,12 +17,23 @@ class User implements Serializable {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+    int reputation 
 
 	User(String username, String password) {
 		this()
 		this.username = username
 		this.password = password
 	}
+
+	static mapping = {
+		password column: '`password`'
+	}
+
+	static hasMany = [questions : Question, 
+                        answers : Answer,
+                        badges  : Badge]
+
+	static belongsTo = Badge
 
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this)*.role
@@ -49,7 +60,4 @@ class User implements Serializable {
 		password blank: false
 	}
 
-	static mapping = {
-		password column: '`password`'
-	}
 }
