@@ -13,6 +13,11 @@ class UserControllerSpec extends Specification {
         //Populate valid properties like...
         //params["name"] = 'someValidName'
 		params["username"] = 'username'
+		params["password"] = 'password'
+		params["enabled"] = true
+		params["accountExpired"] = false
+		params["accountLocked"] = true
+		params["passwordExpired"] = false
 		params["reputation"] = 1
     }
 
