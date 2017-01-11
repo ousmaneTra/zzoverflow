@@ -10,9 +10,14 @@ class QuestionControllerSpec extends Specification {
     def populateValidParams(params) {
         assert params != null
 
-        // TODO: Populate valid properties like...
+        //Populate valid properties like...
         //params["name"] = 'someValidName'
-        assert false, "TODO: Provide a populateValidParams() implementation for this generated test suite"
+		params["title"] = "How to do that..."
+		params["body"] = "I am trying to "
+		params["nbView"] = 100
+		params["solved"] = false
+		params["title"] = "How to do that..."
+		params["user.id"] = 1
     }
 
     void "Test the index action returns the correct model"() {

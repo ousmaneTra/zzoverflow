@@ -4,15 +4,19 @@ import grails.test.mixin.*
 import spock.lang.*
 
 @TestFor(BadgeController)
-@Mock(Badge)
+@Mock([Badge])
 class BadgeControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
 
-        // TODO: Populate valid properties like...
+        //Populate valid properties like...
         //params["name"] = 'someValidName'
-        assert false, "TODO: Provide a populateValidParams() implementation for this generated test suite"
+		params["name"] = 'Informed'
+		params["requirement.name"] = 'Vue'
+		params["requirement.value"] = 200
+		params["badgeType.name"] = "Type1" 
+		
     }
 
     void "Test the index action returns the correct model"() {
