@@ -3,9 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'question.label', default: 'Question')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
-        <asset:stylesheet src="bootstrap.css"/>
+        <!--asset:stylesheet src="bootstrap.css"/-->
         <asset:stylesheet src="question/create.css"/>
         <asset:stylesheet src="question/jquery-tagit.css"/>
         <asset:stylesheet src="question/tagit-ui-zendesk.css"/>
@@ -23,10 +24,13 @@
         </script>
     </head>
     <body>
-        <!---
-        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css">
-        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
-        -->
+        <a href="#create-question" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+        <div class="nav" role="navigation">
+            <ul>
+                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+            </ul>
+        </div>
         <div class="container">
             <div class="row">
                 <g:form url="[controller: 'question', action: 'save', method : POST]" role="form" id="contact-form" class="contact-form">
