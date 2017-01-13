@@ -25,6 +25,7 @@ class AnswerController {
 
     @Transactional
     def save(Answer answer) {
+        println(answer)
         if (answer == null) {
             transactionStatus.setRollbackOnly()
             notFound()
