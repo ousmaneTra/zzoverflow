@@ -15,6 +15,7 @@ class BootStrap {
 
         
         def tag         = new Tag(name : 'grails')
+        def tag2         = new Tag(name : 'groovy')
 
         def requirement = new Requirement(name :'score', value :5)
         
@@ -28,13 +29,13 @@ class BootStrap {
         def user        = new User(username : 'toto', password : 'toto') 
                                 .addToBadges(badge)
                                 .save()
-        //def userRole1 = new Role('ROLE_USER').save()
+
         UserRole.create user, userRole
                         
         def user2       = new User(username : 'john', password : 'john') 
                                 .addToBadges(badge)
-                                .save()
-        //def userRole2 = new Role('ROLE_USER').save()                                
+                                .save()  
+
         UserRole.create user2, userRole
 
 
@@ -49,6 +50,7 @@ class BootStrap {
         def answer   = new Answer(body : 'This is the solution body !!!', vote : 0, user : user2, question : question)                        
 
         tag.save()
+        tag2.save()
         requirement.save()
         badgeType.save()
         badge.save()

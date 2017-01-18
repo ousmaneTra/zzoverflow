@@ -16,9 +16,15 @@ class Question {
 
     static constraints = {
         correct(nullable : true)
+        tags (nullable : true)
     }
 
     static mapping = {
         autoTimestamp true
     }
+
+    String toString(){
+        return "tags  = " + tags + " /title = " + title + " / body = " + body + " /nbView = " + nbView + " /solved = " + solved + " /user = " + user + "\n";
+    }
+
 }

@@ -16,4 +16,8 @@ class Answer {
         autoTimestamp true
     }
 
+    String toString(){
+        return  "body = " + body + " /user = " + user + "\n";
+    }
+
 }
