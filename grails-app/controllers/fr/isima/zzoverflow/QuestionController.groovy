@@ -25,7 +25,8 @@ class QuestionController {
     def create() {
         def question = new Question(params)
         question.user = springSecurityService.getCurrentUser()
-        respond question
+        //respond question
+        respond new Question(params)
     }
 
     @Transactional
