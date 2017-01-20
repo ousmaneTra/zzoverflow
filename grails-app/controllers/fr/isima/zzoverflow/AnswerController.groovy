@@ -3,12 +3,15 @@ package fr.isima.zzoverflow
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityService
 
 @Secured('ROLE_USER')
 @Transactional(readOnly = true)
 class AnswerController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -39,6 +42,9 @@ class AnswerController {
         }
 
         answer.save flush:true
+
+        //Create new Activity
+        new Activity(type: ActivityType.ANSWER_QUESTION, targetId: answer.id, user: springSecurityService.getCurrentUser()).save flush:true
 
         request.withFormat {
             form multipartForm {

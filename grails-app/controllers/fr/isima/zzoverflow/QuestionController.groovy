@@ -66,6 +66,9 @@ class QuestionController {
         print("3")
         question.save flush:true
 
+        //Create new Activity
+        new Activity(type: ActivityType.ASK_QUESTION, targetId: question.id, user: springSecurityService.getCurrentUser()).save flush:true
+
         print("4")
         request.withFormat {
             form multipartForm {
