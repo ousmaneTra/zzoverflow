@@ -14,8 +14,21 @@ class QuestionController {
     def springSecurityService
 
     def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Question.list(params), model:[questionCount: Question.count()]
+        params.max   = Math.min(max ?: 10, 100)
+        params.sort  = "dateCreated"
+        params.order = "desc"
+        
+        def list       = []
+        def duration   = [:]
+        def nbComments = [:]
+        list = Question.list(params)
+
+        list.each { post ->
+            duration[post.id]   = getDiffernceInString(post.dateCreated)
+            nbComments[post.id] = post.answers.size()
+        }
+        
+        [questionCount: Question.count(), list : list, duration : duration, comments : nbComments]
     }
 
     def show(Question question) {
@@ -134,4 +147,48 @@ class QuestionController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    /** 
+    * Returns differnce b/w new Date and old date as Map holding difference in years, 
+    weeks, days, hrs, mins & secs 
+    */ 
+    public static Map getDiffernceInDates(Date oldDate, Date newDate = new Date()) { 
+        Long difference = newDate.time - oldDate.time 
+        Map diffMap = [:] 
+        difference = difference / 1000 
+        diffMap.seconds = difference % 60 
+        difference = (difference - diffMap.seconds) / 60 
+        diffMap.minutes = difference % 60 
+        difference = (difference - diffMap.minutes) / 60 
+        diffMap.hours = difference % 24 
+        difference = (difference - diffMap.hours) / 24 
+        diffMap.years = (difference / 365).toInteger() 
+        if(diffMap.years) 
+            difference = (difference) % 365 
+        diffMap.days = difference % 7 
+        diffMap.weeks = (difference - diffMap.days) / 7 
+        return diffMap 
+    } 
+
+    public static String getDiffernceInString(Date date) {
+            Map diff = getDiffernceInDates(date) 
+            String result = diff.years ? diff.years + "y ago" : "" 
+            if (result) 
+                return result 
+            result += diff.weeks ? diff.weeks + "w ago" : "" 
+            if (result) 
+                return result 
+            result += diff.days ? diff.days + "d ago" : "" 
+            if (result) 
+                return result 
+            result += diff.hours ? diff.hours + "h ago" : "" 
+            if (result) 
+                return result 
+            result += diff.minutes ? diff.minutes + "min ago" : "" 
+            if (result) 
+                return result 
+            result += diff.seconds ? diff.seconds + "sec ago" : "" 
+                return result;
+    }
+    
 }
