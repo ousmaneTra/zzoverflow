@@ -58,3 +58,7 @@ website:   	http://www.themepunch.com
 	margin: 10px 0px 10px 0px;
 
 }
+
+.post-body {
+	min-height: 50px;
+}

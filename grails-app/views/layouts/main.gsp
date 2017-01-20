@@ -51,12 +51,13 @@
                             <div class="env pull-left"><i class="fa fa-envelope"></i></div>
 
                             <div class="avatar pull-left dropdown">
-                                <a data-toggle="dropdown" href="#"><asset:image src="question/avatar.jpg" alt="" /></a> <b class="caret"></b>
+
+                                <a data-toggle="dropdown" href="#"><asset:image id="avatar-user" src="user/${currentUser ? currentUser.id :  '4'}.jpg" alt="" /></a> <b class="caret"></b>
                                 <div class="status green">&nbsp;</div>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My Profile</a></li>
+                                    <li role="presentation"><g:link role="menuitem" tabindex="-1" controller="user" action="show" id="2">My Profile</g:link></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-3" href="#">Log Out</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-3" href="${createLink(uri: '/logoff')}">Log Out</a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>
                                 </ul>
                             </div>

@@ -4,6 +4,7 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
+import javax.annotation.PostConstruct
 
 @Secured('ROLE_USER')
 @Transactional(readOnly = true)
@@ -12,6 +13,7 @@ class QuestionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def springSecurityService
+    
 
     def index(Integer max) {
         params.max   = Math.min(max ?: 10, 100)
@@ -27,8 +29,10 @@ class QuestionController {
             duration[post.id]   = getDiffernceInString(post.dateCreated)
             nbComments[post.id] = post.answers.size()
         }
+
+        def currentUser = springSecurityService.getCurrentUser() 
         
-        [questionCount: Question.count(), list : list, duration : duration, comments : nbComments]
+        [questionCount: Question.count(), list : list, duration : duration, comments : nbComments, currentUser : currentUser]
     }
 
     def show(Question question) {
@@ -37,8 +41,9 @@ class QuestionController {
 
     def create() {
         def question = new Question(params)
-        question.user = springSecurityService.getCurrentUser()
-        respond question
+        question.user   = springSecurityService.getCurrentUser()
+        def currentUser = springSecurityService.getCurrentUser() 
+        [question:question, currentUser : currentUser]
     }
 
     @Transactional
@@ -184,10 +189,10 @@ class QuestionController {
             result += diff.hours ? diff.hours + "h ago" : "" 
             if (result) 
                 return result 
-            result += diff.minutes ? diff.minutes + "min ago" : "" 
+            result += diff.minutes ? diff.minutes + " min ago" : "" 
             if (result) 
                 return result 
-            result += diff.seconds ? diff.seconds + "sec ago" : "" 
+            result += diff.seconds ? diff.seconds + " sec ago" : "" 
                 return result;
     }
     

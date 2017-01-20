@@ -17,7 +17,7 @@
                                     <div class="wrap-ut pull-left">
                                         <div class="userinfo pull-left">
                                             <div class="avatar">
-                                                <asset:image src="question/avatar.jpg" alt="" />
+                                                <asset:image src="user/${post.user.id}.jpg" alt="" />
                                                 <div class="status green">&nbsp;</div>
                                             </div>
 
@@ -28,16 +28,16 @@
                                         </div>
                                         <div class="posttext pull-left">
                                             <h2>
-                                                <a href="02_topic.html">
+                                                <g:link action="show" id="${post.id}">
                                                     <%
                                                         if(post.title.size() > 55)
                                                             print post.title.substring(0,55) + " ..."
                                                         else
                                                             print post.title
                                                     %>
-                                                </a>
+                                                </g:link>
                                             </h2>
-                                            <p>
+                                            <p class="post-body">
                                                 <%
                                                     if(post.body.size() > 140)
                                                         print post.body.substring(0,140) + " ..."
