@@ -7,20 +7,14 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured('ROLE_USER')
 @Transactional(readOnly = true)
 class UserController {
-
+	
+	def springSecurityService
+	
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond User.list(params), model:[userCount: User.count()]
-    }
-
-    def show(User user) {
-        respond user
-    }
-
-    def create() {
-        respond new User(params)
     }
 
     @Transactional
@@ -48,8 +42,8 @@ class UserController {
         }
     }
 
-    def edit(User user) {
-        respond user
+    def edit() {
+        respond springSecurityService.currentUser
     }
 
     @Transactional
@@ -70,8 +64,8 @@ class UserController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'user.label', default: 'User'), user.id])
-                redirect user
+                flash.message = message(code: 'default.updated.message')
+                redirect action: 'profile'
             }
             '*'{ respond user, [status: OK] }
         }
@@ -105,5 +99,55 @@ class UserController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def profile() {
+		respond springSecurityService.currentUser
+	}
+
+    def changeAvatar(){
+        respond springSecurityService.currentUser
+    }
+
+    private static final okcontents = ['image/png', 'image/jpeg', 'image/gif']
+
+    def upload_avatar() {
+        def user = springSecurityService.currentUser // or however you select the current user
+
+        // Get the avatar file from the multi-part request
+        def f = request.getFile('avatar')
+
+        // List of OK mime-types
+        if (!okcontents.contains(f.getContentType())) {
+            flash.message = "Avatar must be one of: ${okcontents}"
+            render(view:'select_avatar', model:[user:user])
+            return
+        }
+
+        // Save the image and mime type
+        user.avatar = f.bytes
+        user.avatarType = f.contentType
+        log.info("File uploaded: $user.avatarType")
+
+        // Validation works, will check if the image is too big
+        if (!user.save()) {
+            render(view:'changeAvatar', model:[user:user])
+            return
+        }
+        flash.message = message(code: 'default.avatar.updated.message')
+        redirect(action:'profile')
+    }
+
+    def avatar_image() {
+        def avatarUser = User.get(params.id)
+        if (!avatarUser || !avatarUser.avatar || !avatarUser.avatarType) {
+            response.sendError(404)
+            return
+        }
+        response.contentType = avatarUser.avatarType
+        response.contentLength = avatarUser.avatar.size()
+        OutputStream out = response.outputStream
+        out.write(avatarUser.avatar)
+        out.close()
     }
 }

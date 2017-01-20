@@ -12,21 +12,41 @@ class User implements Serializable {
 	transient springSecurityService
 
 	String username
+	String name
+	String aboutMe
+	int reputation
+	Date dateCreated
+	Date lastUpdated
+	byte[] avatar
+  	String avatarType
 	String password
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
-    int reputation 
+
+	User(String username) {
+		this()
+		this.username = username  
+		this.name = username
+	}
 
 	User(String username, String password) {
 		this()
 		this.username = username
 		this.password = password
 	}
+	
+	User(String username, String password, String name) {
+		this()
+		this.username = username
+		this.password = password
+		this.name = name
+	}
 
 	static mapping = {
 		password column: '`password`'
+		autoTimestamp true
 	}
 
 	static hasMany = [questions : Question, 
@@ -58,6 +78,10 @@ class User implements Serializable {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
+		name blank: false
+		aboutMe nullable: true
+		avatar(nullable:true, maxSize: 16384 /* 16K */)
+    	avatarType(nullable:true)
 	}
 
 }
