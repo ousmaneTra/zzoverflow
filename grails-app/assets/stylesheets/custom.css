@@ -424,10 +424,10 @@ td.chbox {
 /*--- Post --*/
 .post {
     background-color: #ffffff;
-
     border-radius: 2px;
     box-shadow: 0 1px 2px #c9cccd;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .post .wrap-ut {
@@ -454,7 +454,9 @@ td.chbox {
 .post .postinfo {
     width: 15%;
     border-left: solid 1px #f1f1f1;
-
+    position: absolute;
+    right: 0;
+    height: 100%;
 
 }
 
@@ -496,10 +498,34 @@ td.chbox {
     position: relative;
 }
 
+.post .comments .commentbg-solved {
+    background-color: #1abc9c;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 12px 17px;
+    color: #ffffff;
+    font-size: 14px;
+    font-family: 'Open Sans Bold', sans-serif; 
+    position: relative;
+}
+
 .post .comments .commentbg .mark {
     width: 11px;
     height: 11px;
     background-color: #bdc3c7;
+    position: absolute;
+    bottom: 0;
+    left: 43%;
+    margin-bottom: -5px;
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg); /* IE 9 */
+    -webkit-transform:rotate(45deg); /* Opera, Chrome, and Safari */
+}
+
+.post .comments .commentbg-solved .mark {
+    width: 11px;
+    height: 11px;
+    background-color: #1abc9c;
     position: absolute;
     bottom: 0;
     left: 43%;

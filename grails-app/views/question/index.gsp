@@ -39,18 +39,28 @@
                                             </h2>
                                             <p>
                                                 <%
-                                                    if(post.body.size() > 200)
-                                                        print post.body.substring(0,200) + " ..."
+                                                    if(post.body.size() > 140)
+                                                        print post.body.substring(0,140) + " ..."
                                                     else
                                                         print post.body
                                                 %>
                                             </p>
+                                            <div class="tag-container">
+                                                <g:each in="${post.tags}" var="tag" status="j">
+                                                    <span class="badge pull-left tag">${tag}</span>
+                                                </g:each>
+                                            </div>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="postinfo pull-left">
                                         <div class="comments">
-                                            <div class="commentbg">
+                                            <g:if test="${post.solved}">
+                                                <div class="commentbg-solved">
+                                            </g:if>
+                                            <g:else>
+                                                <div class="commentbg">
+                                            </g:else>
                                                 ${comments.get(post.id)}
                                                 <div class="mark"></div>
                                             </div>

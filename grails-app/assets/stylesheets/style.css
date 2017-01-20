@@ -48,3 +48,13 @@ website:   	http://www.themepunch.com
 .logo-text {
 	color: #8B8E90;
 }
+
+.tag {
+	margin-right: 5px;
+	font-weight: 200;
+}
+
+.tag-container {
+	margin: 10px 0px 10px 0px;
+
+}

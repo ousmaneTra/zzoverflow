@@ -48,7 +48,7 @@ class BootStrap {
                                 title : '10 Kids Unaware of Their Halloween Costume', 
                                 body :  'Today, were looking at three particularly interesting stories. Pinterest added a new location-based feature on Wednesday that uses Place Pins as a way to map out vacations and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for 8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google Wallet is offering a debit card that can take out cash from.', 
                                 nbView : 1, 
-                                solved : false, 
+                                solved : true, 
                                 user : user)
                                 .addToTags(tag)  
 
