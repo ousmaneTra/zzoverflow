@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'question.label', default: 'Question')}" />
-        <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <title>
+            <g:message code="default.create.label" args="[entityName]" /> - ZZOverflow
+        </title>
         <!--asset:stylesheet src="bootstrap.css"/-->
         <asset:stylesheet src="question/create.css"/>
         <asset:stylesheet src="question/jquery-tagit.css"/>
@@ -27,8 +29,11 @@
         <a href="#create-question" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
         <div class="nav" role="navigation">
             <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
+                <li>
+                        <g:link class="list" action="index">
+                            <g:message code="default.list.label" args="[entityName]" />
+                        </g:link>
+                </li>
             </ul>
         </div>
         <div class="container">

@@ -21,6 +21,7 @@ class Question {
 
     static mapping = {
         autoTimestamp true
+        body type: 'text'
     }
 
     String toString(){

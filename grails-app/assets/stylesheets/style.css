@@ -1,0 +1,68 @@
+/*-----------------------------------------------------------------------------
+
+KENBURNER RESPONSIVE BASIC STYLES OF HTML DOCUMENT
+
+Screen Stylesheet
+
+version:   	1.0
+date:      	07/27/11
+author:		themepunch
+email:     	support@themepunch.com
+website:   	http://www.themepunch.com
+-----------------------------------------------------------------------------*/
+
+
+
+.boxedcontainer		{	max-width: 1170px; margin:auto; padding:0px 30px;}
+
+/*********************************************
+	-	SETTINGS FOR BANNER CONTAINERS	-
+**********************************************/
+
+.tp-banner-container{
+	width:100%;
+	position:relative;
+	padding:0;
+
+}
+
+.tp-banner{
+	width:100%;
+	position:relative;
+}
+
+.tp-banner-fullscreen-container {
+		width:100%;
+		position:relative;
+		padding:0;
+}
+
+.post-content {
+	margin: 15px auto;
+}
+
+.logo-size {
+	width: 70px;
+}
+
+.logo-text {
+	color: #8B8E90;
+}
+
+.tag {
+	margin-right: 5px;
+	font-weight: 200;
+}
+
+.tag-container {
+	margin: 10px 0px 10px 0px;
+
+}
+
+.post-body {
+	min-height: 50px;
+}
+
+.avatar-image {
+	height: 37px;
+}

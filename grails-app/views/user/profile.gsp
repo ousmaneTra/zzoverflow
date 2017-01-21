@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
+        <g:set var="entityName" value="${message(code: 'currentUser.label', default: 'User')}" />
         <title><g:message code="default.profile.label"/></title>
     
     	<asset:stylesheet src="profile/profile.css"/>
@@ -37,11 +37,11 @@
 					<div class="row">
 						<div class="col-xs-12 col-sm-3 center">
 							<span class="profile-picture">
-								<g:if test="${user.avatar}">
-									<img class="avatar" src="${createLink(controller:'user', action:'avatar_image', id:user.id)}" />
+								<g:if test="${currentUser.avatar}">
+									<img class="avatar" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
 								</g:if>
 								<g:else>
-									<img class="editable img-responsive" alt=" Avatar" id="avatar2" src="http://bootdey.com/img/Content/avatar/avatar6.png">
+									 <asset:image class="editable img-responsive" alt=" Avatar" id="avatar2" src="user/1.jpg" alt="" />
 								</g:else>
 							</span>
 							<div class="space space-4"></div>
@@ -51,7 +51,7 @@
 
 						<div class="col-xs-12 col-sm-9">
 							<h4 class="blue">
-								<span class="middle">${user.name}</span>
+								<span class="middle">${currentUser.name}</span>
 
 								<span class="label label-purple arrowed-in-right">
 									<i class="ace-icon fa fa-circle smaller-80 align-middle"></i>
@@ -64,7 +64,7 @@
 									<div class="profile-info-name"> <g:message code="default.username.label"/> </div>
 
 									<div class="profile-info-value">
-										<span>${user.username}</span>
+										<span>${currentUser.username}</span>
 									</div>
 								</div>
 								
@@ -73,7 +73,7 @@
 									<div class="profile-info-name"> <g:message code="default.reputation.label"/> </div>
 
 									<div class="profile-info-value">
-										<span>${user.reputation}</span>
+										<span>${currentUser.reputation}</span>
 									</div>
 								</div>
 
@@ -81,7 +81,7 @@
 									<div class="profile-info-name"> Joined </div>
 
 									<div class="profile-info-value">
-										<span><g:formatDate date="${user.dateCreated}" type="date" style="LONG" formatName="default.date.format"/></span>
+										<span><g:formatDate date="${currentUser.dateCreated}" type="date" style="LONG" formatName="default.date.format"/></span>
 									</div>
 								</div>
 
@@ -89,7 +89,7 @@
 									<div class="profile-info-name"> Badges </div>
 
 									<div class="profile-info-value">
-										<g:each var="item" in="${user.badges}">
+										<g:each var="item" in="${currentUser.badges}">
 											<span class="badge">${item.name}</span>
 										</g:each>
 									</div>
@@ -102,8 +102,8 @@
 									<div class="profile-info-name"><g:message code="default.aboutMe.label" default="About Me"/></div>
 
 									<div class="profile-info-value">
-										<g:if test = "${user.aboutMe}">
-											${user.aboutMe}
+										<g:if test = "${currentUser.aboutMe}">
+											${currentUser.aboutMe}
 										</g:if>
 									</div>
 								</div>
