@@ -52,7 +52,7 @@
 
                             <div class="avatar pull-left dropdown">
 
-                                <a data-toggle="dropdown" href="#">
+                                <div data-toggle="dropdown" class="avatar-cursor">
                                     <!--asset:image id="avatar-user" src="user/${currentUser ? currentUser.id :  '4'}.jpg" alt="" /-->
                                     <g:if test="${currentUser}">
                                         <g:if test="${currentUser.avatar}"> 
@@ -66,7 +66,7 @@
                                             <div class="status green">&nbsp;</div>
                                         </g:else>
 								    </g:if>
-                                </a> 
+                                </div> 
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><g:link role="menuitem" tabindex="-1" controller="user" action="profile">My Profile</g:link></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>

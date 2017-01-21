@@ -66,3 +66,7 @@ website:   	http://www.themepunch.com
 .avatar-image {
 	height: 37px;
 }
+
+.avatar-cursor {
+	cursor: pointer;
+}
