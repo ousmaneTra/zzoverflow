@@ -41,7 +41,7 @@
 									<img class="avatar" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
 								</g:if>
 								<g:else>
-									<img class="editable img-responsive" alt=" Avatar" id="avatar2" src="http://bootdey.com/img/Content/avatar/avatar6.png">
+									 <asset:image class="editable img-responsive" alt=" Avatar" id="avatar2" src="user/1.jpg" alt="" />
 								</g:else>
 							</span>
 							<div class="space space-4"></div>

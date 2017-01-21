@@ -21,7 +21,7 @@
                                                     <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
                                                 </g:if>
                                                 <g:else>
-                                                    <asset:image class="avatar-image" src="user/3.jpg" alt="" />
+                                                    <asset:image class="avatar-image" src="user/1.jpg" alt="" />
                                                 </g:else>
                                                 
                                                 <div class="status green">&nbsp;</div>

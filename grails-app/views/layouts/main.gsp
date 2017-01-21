@@ -61,7 +61,7 @@
                                             <div class="status green">&nbsp;</div>
                                         </g:if>
                                         <g:else>
-                                            <asset:image id="avatar-user"  class="avatar-image" src="user/3.jpg" alt="" /></a> 
+                                            <asset:image id="avatar-user"  class="avatar-image" src="user/1.jpg" alt="" /></a> 
                                             <b class="caret"></b>
                                             <div class="status green">&nbsp;</div>
                                         </g:else>
