@@ -9,7 +9,7 @@ class BootStrap {
 
         def userRole = new Role('ROLE_USER').save()
 
-        def me       = new User('user@gmail.com', 'pass').save()
+        def me       = new User(username: 'user@gmail.com', password: 'pass', name:'USER user').save()
 
         UserRole.create me, userRole
 
@@ -26,13 +26,13 @@ class BootStrap {
         def badge       = new Badge(name : 'altruist', requirement : requirement, badgeType : badgeType )
                         
 
-        def user        = new User(username : 'toto', password : 'toto') 
+        def user        = new User(username : 'toto', password : 'toto', name: 'To to') 
                                 .addToBadges(badge)
                                 .save()
 
         UserRole.create user, userRole
                         
-        def user2       = new User(username : 'john', password : 'john') 
+        def user2       = new User(username : 'john', password : 'john', name: 'John Doe') 
                                 .addToBadges(badge)
                                 .save()  
 
