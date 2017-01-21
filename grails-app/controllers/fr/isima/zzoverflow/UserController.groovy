@@ -102,7 +102,7 @@ class UserController {
     }
 
     def profile() {
-		respond springSecurityService.currentUser
+		[currentUser : springSecurityService.currentUser ]
 	}
 
     def changeAvatar(){

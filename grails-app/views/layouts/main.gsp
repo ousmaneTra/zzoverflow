@@ -52,10 +52,23 @@
 
                             <div class="avatar pull-left dropdown">
 
-                                <a data-toggle="dropdown" href="#"><asset:image id="avatar-user" src="user/${currentUser ? currentUser.id :  '4'}.jpg" alt="" /></a> <b class="caret"></b>
-                                <div class="status green">&nbsp;</div>
+                                <a data-toggle="dropdown" href="#">
+                                    <!--asset:image id="avatar-user" src="user/${currentUser ? currentUser.id :  '4'}.jpg" alt="" /-->
+                                    <g:if test="${currentUser}">
+                                        <g:if test="${currentUser.avatar}"> 
+									        <img id="avatar-user"  class="avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+                                            <b class="caret"></b>
+                                            <div class="status green">&nbsp;</div>
+                                        </g:if>
+                                        <g:else>
+                                            <asset:image id="avatar-user"  class="avatar-image" src="user/3.jpg" alt="" /></a> 
+                                            <b class="caret"></b>
+                                            <div class="status green">&nbsp;</div>
+                                        </g:else>
+								    </g:if>
+                                </a> 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><g:link role="menuitem" tabindex="-1" controller="user" action="show" id="2">My Profile</g:link></li>
+                                    <li role="presentation"><g:link role="menuitem" tabindex="-1" controller="user" action="profile">My Profile</g:link></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-3" href="${createLink(uri: '/logoff')}">Log Out</a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>

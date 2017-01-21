@@ -24,7 +24,7 @@ class BootStrap {
                             
 
         def badge       = new Badge(name : 'altruist', requirement : requirement, badgeType : badgeType )
-                        
+   
 
         def user        = new User(username : 'toto', password : 'toto', name: 'To to') 
                                 .addToBadges(badge)

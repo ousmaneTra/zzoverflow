@@ -36,6 +36,7 @@ class QuestionController {
     }
 
     def show(Question question) {
+        question.nbView++
         respond question
     }
 

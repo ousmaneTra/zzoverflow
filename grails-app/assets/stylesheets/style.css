@@ -62,3 +62,7 @@ website:   	http://www.themepunch.com
 .post-body {
 	min-height: 50px;
 }
+
+.avatar-image {
+	height: 37px;
+}
