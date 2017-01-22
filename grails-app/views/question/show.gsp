@@ -3,7 +3,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'question.label', default: 'Question')}" />
         <title>
-            <title><g:message code='springSecurity.login.title'/> - ZZOverflow</title>
+            <g:message code="default.show.label" args="[entityName]" /> - ZZOverflow</title>
         </title>
     </head>
     <body>
@@ -60,7 +60,7 @@
                                     Posted on :
                                         <g:formatDate date="${question.dateCreated}" type="date" style="LONG"/>
                                     @                                                
-                                        <g:formatDate date="${question.dateCreated}" type="time" style="MEDIUM"/>
+                                        <g:formatDate date="${question.dateCreated}" type="time" />
                             </div>
 
                             <div class="next pull-right">                                        
@@ -126,7 +126,7 @@
                                         Posted on : 
                                         <g:formatDate date="${answer.dateCreated}" type="date" style="LONG"/>
                                         @                                                
-                                        <g:formatDate date="${answer.dateCreated}" type="time" style="MEDIUM"/>
+                                        <g:formatDate date="${answer.dateCreated}" type="time" />
                                     </div>
 
                                 <div class="next pull-right">                                        
@@ -152,12 +152,17 @@
                                             <g:if test="${currentUser.avatar}">
                                                 <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
                                             </g:if>
+                                            <g:else>
+                                                <asset:image class="avatar-image" src="user/1.jpg" alt="" />
+                                            </g:else>
                                         </sec:ifLoggedIn>
                                         <sec:ifNotLoggedIn>
                                             <asset:image class="avatar-image" src="user/1.jpg" alt="" />
                                         </sec:ifNotLoggedIn>
                                         <div class="status red">&nbsp;</div>
-                                        <div class="avatar-username">${currentUser.username}</div>
+                                        <sec:ifLoggedIn>
+                                            <div class="avatar-username">${currentUser.username}</div>
+                                        </sec:ifLoggedIn>
                                     </div>
 
                                     <div class="icons">

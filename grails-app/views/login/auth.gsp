@@ -1,9 +1,8 @@
 <html lang="en">
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'question.label', default: 'Question')}" />
         <title>
-            <g:message code="default.list.label" args="[entityName]" /> - ZZOverflow
+            <g:message code='springSecurity.login.title'/> - ZZOverflow
         </title>
     </head>
     <body>
