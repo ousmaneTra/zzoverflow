@@ -78,7 +78,7 @@
                             <!-- POST -->
 
                             <!-- ANSWERS -->
-                            <g:each in="${question.answers}" var="answer" status="i">
+                            <g:each in="${ question.answers.sort{a,b-> a.dateCreated.compareTo(b.dateCreated)} }" var="answer" status="i">
                                 <div class="post">
                                     <div class="topwrap">
                                         <div class="userinfo pull-left">
