@@ -17,19 +17,26 @@
                                     <div class="wrap-ut pull-left">
                                         <div class="userinfo pull-left">
                                             <div class="avatar">
-                                                <g:if test="${currentUser.avatar}">
-                                                    <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+                                                <g:if test="${post.user.avatar}">
+                                                    <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:post.user.id)}" />
                                                 </g:if>
                                                 <g:else>
                                                     <asset:image class="avatar-image" src="user/1.jpg" alt="" />
                                                 </g:else>
                                                 
                                                 <div class="status green">&nbsp;</div>
+                                                <div class="avatar-username">${post.user.username}</div>
                                             </div>
 
                                             <div class="icons">
-                                                <asset:image src="question/icon1.jpg" alt="" />
-                                                <asset:image src="question/icon4.jpg" alt="" />
+                                                <div class="up">
+                                                    <i class="fa fa-thumbs-o-up"></i>
+                                                    0
+                                                </div>
+                                                <div class="down">
+                                                    <i class="fa fa-thumbs-o-down"></i>
+                                                    0
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="posttext pull-left">

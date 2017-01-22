@@ -4,9 +4,8 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
-import javax.annotation.PostConstruct
 
-@Secured('ROLE_USER')
+@Secured(['IS_AUTHENTICATED_ANONYMOUSLY']) 
 @Transactional(readOnly = true)
 class QuestionController {
 
@@ -37,9 +36,11 @@ class QuestionController {
 
     def show(Question question) {
         question.nbView++
-        respond question
+        def currentUser = springSecurityService.getCurrentUser() 
+        [question : question, currentUser : currentUser ]
     }
 
+    @Secured('ROLE_USER')
     def create() {
         def question = new Question(params)
         question.user   = springSecurityService.getCurrentUser()
@@ -47,6 +48,7 @@ class QuestionController {
         [question:question, currentUser : currentUser]
     }
 
+    @Secured('ROLE_USER')
     @Transactional
     def save() {
 

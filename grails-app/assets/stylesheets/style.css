@@ -64,9 +64,30 @@ website:   	http://www.themepunch.com
 }
 
 .avatar-image {
-	height: 37px;
+	height: 47px;
 }
 
 .avatar-cursor {
 	cursor: pointer;
+}
+
+.reply-padding {
+	padding-top: 10;
+}
+
+.avatar-username {
+	font-size: 10px;
+	width: 47px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: center;
+}
+
+.pull-center{
+	margin-left: 37%;
+}
+
+.login_message {
+	padding: 6px 25px 20px 25px;
+	color: #c33;
 }
