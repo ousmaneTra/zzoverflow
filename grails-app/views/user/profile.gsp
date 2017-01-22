@@ -120,164 +120,38 @@
 				<div id="feed" class="tab-pane">
 					<div class="profile-feed row">
 						<div class="col-sm-6">
-							<h4>Questions</h4>
-							<g:each var="activity" in="${user.activities}">
+							<g:each var="activity" in="${currentUser.activities}">
 								<div class="profile-activity clearfix">
 									<div>
-										<img class="pull-left" alt="Alex Doe's avatar" src="http://bootdey.com/img/Content/avatar/avatar1.png">
-										<a class="user" href="#"> Alex Doe </a>
-										changed his profile photo. ${Answer?.get(activity.targetId)?.body}
-										<a href="#">${activity.type}</a>
-
+										<img class="pull-left" alt="${currentUser.name + ' Avatar' }" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+										 ${currentUser.name}
+										<g:if test="${activity.type.toString() == 'ASK_QUESTION'}">
+											asked a <g:link action="show" controller="question" id="${activity.question.id}">question</g:link>
+											<br/>
+											${activity?.question?.title}
+										</g:if>
+										<g:if test="${activity.type.toString() == 'ANSWER_QUESTION'}">
+											answered a <g:link action="show" controller="answer" id="${activity.answer.question.id}">question</g:link>
+											<br/>
+											${activity?.answer?.body}
+										</g:if>
+										
 										<div class="time">
 											<i class="ace-icon fa fa-clock-o bigger-110"></i>
 											<g:formatDate date="${activity.dateCreated}" type="datetime" style="SHORT" formatName="default.date.format"/>
 										</div>
 									</div>
+									<div class="tools action-buttons">
+										<a href="#" class="blue">
+											<i class="ace-icon fa fa-pencil bigger-125"></i>
+										</a>
+
+										<a href="#" class="red">
+											<i class="ace-icon fa fa-times bigger-125"></i>
+										</a>
+									</div>
 								</div>
 							</g:each>
-							<div class="profile-activity clearfix">
-								<div>
-									<img class="pull-left" alt="Alex Doe's avatar" src="http://bootdey.com/img/Content/avatar/avatar1.png">
-									<a class="user" href="#"> Alex Doe </a>
-									changed his profile photo.
-									<a href="#">Take a look</a>
-
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										an hour ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
-						</div><!-- /.col -->
-
-						<div class="col-sm-6">
-							<h4>Answers</h4>
-							<div class="profile-activity clearfix">
-								<div>
-									<i class="pull-left thumbicon fa fa-pencil-square-o btn-pink no-hover"></i>
-									<a class="user" href="#"> Alex Doe </a>
-									published a new blog post.
-									<a href="#">Read now</a>
-
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										11 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="profile-activity clearfix">
-								<div>
-									<img class="pull-left" alt="Alex Doe's avatar" src="http://bootdey.com/img/Content/avatar/avatar4.png">
-									<a class="user" href="#"> Alex Doe </a>
-
-									upgraded his skills.
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										12 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="profile-activity clearfix">
-								<div>
-									<i class="pull-left thumbicon fa fa-key btn-info no-hover"></i>
-									<a class="user" href="#"> Alex Doe </a>
-
-									logged in.
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										12 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="profile-activity clearfix">
-								<div>
-									<i class="pull-left thumbicon fa fa-power-off btn-inverse no-hover"></i>
-									<a class="user" href="#"> Alex Doe </a>
-
-									logged out.
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										16 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="profile-activity clearfix">
-								<div>
-									<i class="pull-left thumbicon fa fa-key btn-info no-hover"></i>
-									<a class="user" href="#"> Alex Doe </a>
-
-									logged in.
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										16 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
 						</div><!-- /.col -->
 					</div><!-- /.row -->
 				</div><!-- /#feed -->

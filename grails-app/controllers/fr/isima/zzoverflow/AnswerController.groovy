@@ -44,7 +44,7 @@ class AnswerController {
         answer.save flush:true
 
         //Create new Activity
-        new Activity(type: ActivityType.ANSWER_QUESTION, targetId: answer.id, user: springSecurityService.getCurrentUser()).save flush:true
+        new Activity(type: ActivityType.ANSWER_QUESTION, answer: answer, user: springSecurityService.getCurrentUser()).save flush:true
 
         request.withFormat {
             form multipartForm {
