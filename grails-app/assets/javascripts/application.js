@@ -6,6 +6,8 @@
 // to create separate JavaScript files as needed.
 //
 //= require jquery-2.2.0.min
+//= question/jquery.themepunch.plugins.min
+//= question/jquery.themepunch.revolution.min
 //= require bootstrap
 //= require_tree .
 //= require_self
