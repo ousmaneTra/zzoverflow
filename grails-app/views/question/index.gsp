@@ -25,11 +25,18 @@
                                                 </g:else>
                                                 
                                                 <div class="status green">&nbsp;</div>
+                                                <div class="avatar-username">${post.user.username}</div>
                                             </div>
 
                                             <div class="icons">
-                                                <asset:image src="question/icon1.jpg" alt="" />
-                                                <asset:image src="question/icon4.jpg" alt="" />
+                                                <div class="up">
+                                                    <i class="fa fa-thumbs-o-up"></i>
+                                                    0
+                                                </div>
+                                                <div class="down">
+                                                    <i class="fa fa-thumbs-o-down"></i>
+                                                    0
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="posttext pull-left">
