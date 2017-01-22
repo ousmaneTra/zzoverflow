@@ -128,7 +128,7 @@
 											${activity?.question?.title}
 										</g:if>
 										<g:if test="${activity.type.toString() == 'ANSWER_QUESTION'}">
-											answered a <g:link action="show" controller="answer" id="${activity.answer.question.id}">question</g:link>
+											answered a <g:link action="show" controller="question" id="${activity.answer.question.id}">question</g:link>
 											<br/>
 											${activity?.answer?.body}
 										</g:if>
