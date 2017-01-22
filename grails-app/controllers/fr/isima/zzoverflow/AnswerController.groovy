@@ -3,6 +3,7 @@ package fr.isima.zzoverflow
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityService
 
 @Secured(['IS_AUTHENTICATED_ANONYMOUSLY']) 
 @Transactional(readOnly = true)
@@ -56,8 +57,18 @@ class AnswerController {
 
         answer.save flush:true
 
+        //Create new Activity
+        new Activity(type: ActivityType.ANSWER_QUESTION, answer: answer, user: springSecurityService.getCurrentUser()).save flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.created.message', args: [message(code: 'answer.label', default: 'Answer'), answer.id])
+                redirect answer
+            }
+            '*' { respond answer, [status: CREATED] }
+
         redirect(controller : "question", action : "show", id : answer.question.id )
-        
+        }   
     }
 
     def process() {
