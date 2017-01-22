@@ -146,16 +146,18 @@
 
                             <!-- NEW ANSWER -->
                             <div class="post">
-                                <g:form url="[controller: 'answer', action: 'save', method : POST]" class="form">            
+                                <g:form url="[controller: 'answer', action: 'process', method : POST]" class="form">            
                                     <div class="topwrap">
                                         <div class="userinfo pull-left">
                                             <div class="avatar">
-                                                <g:if test="${currentUser.avatar}">
-                                                    <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
-                                                </g:if>
-                                                <g:else>
+                                                <sec:ifLoggedIn>
+                                                    <g:if test="${currentUser.avatar}">
+                                                        <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+                                                    </g:if>
+                                                </sec:ifLoggedIn>
+                                                <sec:ifNotLoggedIn>
                                                     <asset:image class="avatar-image" src="user/1.jpg" alt="" />
-                                                </g:else>
+                                                </sec:ifNotLoggedIn>
                                                 <div class="status red">&nbsp;</div>
                                             </div>
 
@@ -172,8 +174,10 @@
                                         <div class="clearfix"></div>
                                     </div> 
                                     <div class="row">
+                                        <sec:ifLoggedIn>
                                             <g:hiddenField name="user.id" value="${currentUser.id}" />
-                                            <g:hiddenField name="question.id" value="${question.id}" />
+                                        </sec:ifLoggedIn>
+                                        <g:hiddenField name="question.id" value="${question.id}" />
                                     </div>                             
                                     <div class="postinfobot">
 
