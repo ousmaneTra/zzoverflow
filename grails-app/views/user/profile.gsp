@@ -120,6 +120,22 @@
 				<div id="feed" class="tab-pane">
 					<div class="profile-feed row">
 						<div class="col-sm-6">
+							<h4>Questions</h4>
+							<g:each var="activity" in="${user.activities}">
+								<div class="profile-activity clearfix">
+									<div>
+										<img class="pull-left" alt="Alex Doe's avatar" src="http://bootdey.com/img/Content/avatar/avatar1.png">
+										<a class="user" href="#"> Alex Doe </a>
+										changed his profile photo. ${Answer?.get(activity.targetId)?.body}
+										<a href="#">${activity.type}</a>
+
+										<div class="time">
+											<i class="ace-icon fa fa-clock-o bigger-110"></i>
+											<g:formatDate date="${activity.dateCreated}" type="datetime" style="SHORT" formatName="default.date.format"/>
+										</div>
+									</div>
+								</div>
+							</g:each>
 							<div class="profile-activity clearfix">
 								<div>
 									<img class="pull-left" alt="Alex Doe's avatar" src="http://bootdey.com/img/Content/avatar/avatar1.png">
@@ -143,104 +159,10 @@
 									</a>
 								</div>
 							</div>
-
-							<div class="profile-activity clearfix">
-								<div>
-									<img class="pull-left" alt="Susan Smith's avatar" src="http://bootdey.com/img/Content/avatar/avatar2.png">
-									<a class="user" href="#"> Susan Smith </a>
-
-									is now friends with Alex Doe.
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										2 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="profile-activity clearfix">
-								<div>
-									<i class="pull-left thumbicon fa fa-check btn-success no-hover"></i>
-									<a class="user" href="#"> Alex Doe </a>
-									joined
-									<a href="#">Country Music</a>
-
-									group.
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										5 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="profile-activity clearfix">
-								<div>
-									<i class="pull-left thumbicon fa fa-picture-o btn-info no-hover"></i>
-									<a class="user" href="#"> Alex Doe </a>
-									uploaded a new photo.
-									<a href="#">Take a look</a>
-
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										5 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="profile-activity clearfix">
-								<div>
-									<img class="pull-left" alt="David Palms's avatar" src="http://bootdey.com/img/Content/avatar/avatar3.png">
-									<a class="user" href="#"> David Palms </a>
-
-									left a comment on Alex's wall.
-									<div class="time">
-										<i class="ace-icon fa fa-clock-o bigger-110"></i>
-										8 hours ago
-									</div>
-								</div>
-
-								<div class="tools action-buttons">
-									<a href="#" class="blue">
-										<i class="ace-icon fa fa-pencil bigger-125"></i>
-									</a>
-
-									<a href="#" class="red">
-										<i class="ace-icon fa fa-times bigger-125"></i>
-									</a>
-								</div>
-							</div>
 						</div><!-- /.col -->
 
 						<div class="col-sm-6">
+							<h4>Answers</h4>
 							<div class="profile-activity clearfix">
 								<div>
 									<i class="pull-left thumbicon fa fa-pencil-square-o btn-pink no-hover"></i>
