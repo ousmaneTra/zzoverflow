@@ -6,20 +6,13 @@
             <g:message code="default.show.label" args="[entityName]" /> - ZZOverflow
         </title>
     </head>
-    <body class="topic">
+    <body>
+
+
 
 
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 breadcrumbf">
-                            <a href="#">Borderlands 2</a> <span class="diviver">&gt;</span> <a href="#">General Discussion</a> <span class="diviver">&gt;</span> <a href="#">Topic Details</a>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="container">
-                    <div class="row">
+                    <div class="row post-content">
                         <div class="col-lg-8 col-md-8">
 
                             <!-- POST -->
@@ -27,7 +20,12 @@
                                 <div class="topwrap">
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
-                                            <img src="images/avatar.jpg" alt="">
+                                            <g:if test="${question.user.avatar}">
+                                                    <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:question.user.id)}" />
+                                            </g:if>
+                                            <g:else>
+                                                <asset:image class="avatar-image" src="user/1.jpg" alt="" />
+                                            </g:else>
                                             <div class="status green">&nbsp;</div>
                                         </div>
 
@@ -36,23 +34,37 @@
                                         </div>
                                     </div>
                                     <div class="posttext pull-left">
-                                        <h2>10 Kids Unaware of Their Halloween Costume</h2>
-                                        <p>Today, we're looking at three particularly interesting stories. Pinterest added a new location-based feature on Wednesday that uses Place Pins as a way to map out vacations and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for $8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google Wallet is offering a debit card that can take out cash from.</p>
+                                        <h2>${question.title}</h2>
+                                        <p>${question.body}</p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>                              
                                 <div class="postinfobot">
 
                                     <div class="likeblock pull-left">
-                                        <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>25</a>
-                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>3</a>
+                                        <a href="#" class="up">
+                                            <i class="fa fa-thumbs-o-up"></i>
+                                            ${question.upvote}
+                                        </a>
+                                        <a href="#" class="down">
+                                            <i class="fa fa-thumbs-o-down"></i>
+                                            ${question.downvote}
+                                        </a>
                                     </div>
 
                                     <div class="prev pull-left">                                        
-                                        <a href="#"><i class="fa fa-reply"></i></a>
+                                        <a href="#">
+                                            <i class="fa fa-reply"></i>
+                                        </a>
                                     </div>
 
-                                    <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : 20 Nov @ 9:30am</div>
+                                    <div class="posted pull-left">
+                                        <i class="fa fa-clock-o"></i>
+                                            Posted on :
+                                                <g:formatDate date="${question.dateCreated}" type="date" style="LONG"/>
+                                            @                                                
+                                                <g:formatDate date="${question.dateCreated}" type="time" style="MEDIUM"/>
+                                    </div>
 
                                     <div class="next pull-right">                                        
                                         <a href="#"><i class="fa fa-share"></i></a>
@@ -62,130 +74,88 @@
 
                                     <div class="clearfix"></div>
                                 </div>
-                            </div><!-- POST -->
-
-                            <div class="paginationf">
-                                <div class="pull-left"><a href="#" class="prevnext"><i class="fa fa-angle-left"></i></a></div>
-                                <div class="pull-left">
-                                    <ul class="paginationforum">
-                                        <li class="hidden-xs"><a href="#">1</a></li>
-                                        <li class="hidden-xs"><a href="#">2</a></li>
-                                        <li class="hidden-xs"><a href="#">3</a></li>
-                                        <li class="hidden-xs"><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li><a href="#">6</a></li>
-                                        <li><a href="#" class="active">7</a></li>
-                                        <li><a href="#">8</a></li>
-                                        <li class="hidden-xs"><a href="#">9</a></li>
-                                        <li class="hidden-xs"><a href="#">10</a></li>
-                                        <li class="hidden-xs hidden-md"><a href="#">11</a></li>
-                                        <li class="hidden-xs hidden-md"><a href="#">12</a></li>
-                                        <li class="hidden-xs hidden-sm hidden-md"><a href="#">13</a></li>
-                                        <li><a href="#">1586</a></li>
-                                    </ul>
-                                </div>
-                                <div class="pull-left"><a href="#" class="prevnext last"><i class="fa fa-angle-right"></i></a></div>
-                                <div class="clearfix"></div>
                             </div>
-
                             <!-- POST -->
-                            <div class="post">
-                                <div class="topwrap">
-                                    <div class="userinfo pull-left">
-                                        <div class="avatar">
-                                            <img src="images/avatar2.jpg" alt="">
-                                            <div class="status red">&nbsp;</div>
+
+                            <!-- ANSWERS -->
+                            <g:each in="${question.answers}" var="answer" status="i">
+                                <div class="post">
+                                    <div class="topwrap">
+                                        <div class="userinfo pull-left">
+                                            <div class="avatar">
+                                                <g:if test="${answer.user.avatar}">
+                                                    <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:answer.user.id)}" />
+                                                </g:if>
+                                                <g:else>
+                                                    <asset:image class="avatar-image" src="user/1.jpg" alt="" />
+                                                </g:else>
+                                                <div class="status red">&nbsp;</div>
+                                            </div>
+
+                                            <div class="icons">
+                                                <img src="images/icon3.jpg" alt="">
+                                                <img src="images/icon4.jpg" alt="">
+                                                <img src="images/icon5.jpg" alt="">
+                                                <img src="images/icon6.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="posttext pull-left">
+                                            <p>${answer.body}</p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>                              
+                                    <div class="postinfobot">
+
+                                        <div class="likeblock pull-left">
+                                            <a href="#" class="up">
+                                                <i class="fa fa-thumbs-o-up"></i>
+                                                ${answer.upvote}
+                                            </a>
+                                            <a href="#" class="down">
+                                                <i class="fa fa-thumbs-o-down"></i>
+                                                ${answer.downvote}
+                                            </a>
                                         </div>
 
-                                        <div class="icons">
-                                            <img src="images/icon3.jpg" alt=""><img src="images/icon4.jpg" alt=""><img src="images/icon5.jpg" alt=""><img src="images/icon6.jpg" alt="">
+                                        <div class="prev pull-left">                                        
+                                            <a href="#" class="reply-padding">
+                                                <i class="fa fa-reply"></i>
+                                            </a>
                                         </div>
+
+                                        <div class="posted pull-left">
+                                            <i class="fa fa-clock-o"></i> 
+                                                Posted on : 
+                                                <g:formatDate date="${question.dateCreated}" type="date" style="LONG"/>
+                                                @                                                
+                                                <g:formatDate date="${question.dateCreated}" type="time" style="MEDIUM"/>
+                                            </div>
+
+                                        <div class="next pull-right">                                        
+                                            <a href="#"><i class="fa fa-share"></i></a>
+
+                                            <a href="#"><i class="fa fa-flag"></i></a>
+                                        </div>
+
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="posttext pull-left">
-                                        <p>Typography helps you engage your audience and establish a distinct, unique personality on your website. Knowing how to use fonts to build character in your design is a powerful skill, and exploring the history and use of typefaces, as well as typogra...</p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>                              
-                                <div class="postinfobot">
-
-                                    <div class="likeblock pull-left">
-                                        <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>10</a>
-                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>1</a>
-                                    </div>
-
-                                    <div class="prev pull-left">                                        
-                                        <a href="#"><i class="fa fa-reply"></i></a>
-                                    </div>
-
-                                    <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : 20 Nov @ 9:45am</div>
-
-                                    <div class="next pull-right">                                        
-                                        <a href="#"><i class="fa fa-share"></i></a>
-
-                                        <a href="#"><i class="fa fa-flag"></i></a>
-                                    </div>
-
-                                    <div class="clearfix"></div>
                                 </div>
-                            </div><!-- POST -->
+                            </g:each>
+                            
+                            <!-- /ANSWERS -->
 
-
-
-                            <!-- POST -->
-                            <div class="post">
-                                <div class="topwrap">
-                                    <div class="userinfo pull-left">
-                                        <div class="avatar">
-                                            <img src="images/avatar3.jpg" alt="">
-                                            <div class="status red">&nbsp;</div>
-                                        </div>
-
-                                        <div class="icons">
-                                            <img src="images/icon3.jpg" alt=""><img src="images/icon4.jpg" alt=""><img src="images/icon5.jpg" alt=""><img src="images/icon6.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="posttext pull-left">
-
-                                        <blockquote>
-                                            <span class="original">Original Posted by - theguy_21:</span>
-                                            Did you see that Dove ad pop up in your Facebook feed this year? How about the Geico camel one? 
-                                        </blockquote>
-                                        <p>Toronto Mayor Rob Ford does not have a bigger fan than "Anchorman's" Ron Burgundy. In fact, Burgundy wants Ford to be re-elected so much, that he agreed to sing the campaign song Brien. The tune in question ...</p>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>                              
-                                <div class="postinfobot">
-
-                                    <div class="likeblock pull-left">
-                                        <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>55</a>
-                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>12</a>
-                                    </div>
-
-                                    <div class="prev pull-left">                                        
-                                        <a href="#"><i class="fa fa-reply"></i></a>
-                                    </div>
-
-                                    <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : 20 Nov @ 9:50am</div>
-
-                                    <div class="next pull-right">                                        
-                                        <a href="#"><i class="fa fa-share"></i></a>
-
-                                        <a href="#"><i class="fa fa-flag"></i></a>
-                                    </div>
-
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div><!-- POST -->
-
-
-
-                            <!-- POST -->
+                            <!-- NEW ANSWER -->
                             <div class="post">
                                 <form action="#" class="form" method="post">
                                     <div class="topwrap">
                                         <div class="userinfo pull-left">
                                             <div class="avatar">
-                                                <img src="images/avatar4.jpg" alt="">
+                                                <g:if test="${currentUser.avatar}">
+                                                    <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+                                                </g:if>
+                                                <g:else>
+                                                    <asset:image class="avatar-image" src="user/1.jpg" alt="" />
+                                                </g:else>
                                                 <div class="status red">&nbsp;</div>
                                             </div>
 
@@ -221,7 +191,8 @@
                                         <div class="clearfix"></div>
                                     </div>
                                 </form>
-                            </div><!-- POST -->
+                            </div>
+                            <!-- NEW ANSWER -->
 
 
                         </div>

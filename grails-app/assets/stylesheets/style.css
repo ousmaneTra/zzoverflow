@@ -70,3 +70,7 @@ website:   	http://www.themepunch.com
 .avatar-cursor {
 	cursor: pointer;
 }
+
+.reply-padding {
+	padding-top: 10;
+}

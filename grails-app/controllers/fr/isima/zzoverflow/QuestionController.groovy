@@ -37,7 +37,8 @@ class QuestionController {
 
     def show(Question question) {
         question.nbView++
-        respond question
+        def currentUser = springSecurityService.getCurrentUser() 
+        [question : question, currentUser : currentUser ]
     }
 
     def create() {

@@ -17,8 +17,8 @@
                                     <div class="wrap-ut pull-left">
                                         <div class="userinfo pull-left">
                                             <div class="avatar">
-                                                <g:if test="${currentUser.avatar}">
-                                                    <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+                                                <g:if test="${post.user.avatar}">
+                                                    <img class="avatar avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:post.user.id)}" />
                                                 </g:if>
                                                 <g:else>
                                                     <asset:image class="avatar-image" src="user/1.jpg" alt="" />
