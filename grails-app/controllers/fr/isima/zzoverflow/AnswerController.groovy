@@ -43,7 +43,7 @@ class AnswerController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'answer.label', default: 'Answer'), answer.id])
-                redirect answer
+                redirect(controller : "question", action : "show", id : params.question.id )
             }
             '*' { respond answer, [status: CREATED] }
         }

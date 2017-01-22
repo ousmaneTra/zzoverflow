@@ -126,9 +126,9 @@
                                         <div class="posted pull-left">
                                             <i class="fa fa-clock-o"></i> 
                                                 Posted on : 
-                                                <g:formatDate date="${question.dateCreated}" type="date" style="LONG"/>
+                                                <g:formatDate date="${answer.dateCreated}" type="date" style="LONG"/>
                                                 @                                                
-                                                <g:formatDate date="${question.dateCreated}" type="time" style="MEDIUM"/>
+                                                <g:formatDate date="${answer.dateCreated}" type="time" style="MEDIUM"/>
                                             </div>
 
                                         <div class="next pull-right">                                        
@@ -146,7 +146,7 @@
 
                             <!-- NEW ANSWER -->
                             <div class="post">
-                                <form action="#" class="form" method="post">
+                                <g:form url="[controller: 'answer', action: 'save', method : POST]" class="form">            
                                     <div class="topwrap">
                                         <div class="userinfo pull-left">
                                             <div class="avatar">
@@ -166,11 +166,15 @@
                                         <div class="posttext pull-left">
                                             <div class="textwraper">
                                                 <div class="postreply">Post a Reply</div>
-                                                <textarea name="reply" id="reply" placeholder="Type your message here"></textarea>
+                                                <textarea name="body" id="reply" placeholder="Type your message here"></textarea>
                                             </div>
                                         </div>
                                         <div class="clearfix"></div>
-                                    </div>                              
+                                    </div> 
+                                    <div class="row">
+                                            <g:hiddenField name="user.id" value="${currentUser.id}" />
+                                            <g:hiddenField name="question.id" value="${question.id}" />
+                                    </div>                             
                                     <div class="postinfobot">
 
                                         <div class="notechbox pull-left">
@@ -190,7 +194,7 @@
 
                                         <div class="clearfix"></div>
                                     </div>
-                                </form>
+                                </g:form>
                             </div>
                             <!-- NEW ANSWER -->
 
