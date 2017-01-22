@@ -5,6 +5,8 @@ class Question {
     String title
     String body
     int nbView
+    int upvote
+    int downvote
     boolean solved
     Answer correct
     Date dateCreated

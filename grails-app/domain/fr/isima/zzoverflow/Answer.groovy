@@ -3,7 +3,8 @@ package fr.isima.zzoverflow
 class Answer {
 
     String body
-    int vote
+    int upvote
+    int downvote
     Date dateCreated
     Date lastUpdated
 
