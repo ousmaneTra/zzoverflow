@@ -6,9 +6,6 @@
         <title><g:message code="default.profile.label"/></title>
     
     	<asset:stylesheet src="profile/profile.css"/>
-    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-		<asset:javascript src="jquery-2.2.0.min.js"/>
-		<asset:javascript src="bootstrap.js"/>
 	</head>
     <body>
 <div id="user-profile-2" class="user-profile">
