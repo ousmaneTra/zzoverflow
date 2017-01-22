@@ -463,14 +463,14 @@ td.chbox {
 }
 
 .post .avatar {
-    width: 37px;
+    width: 47px;
     margin-left: 5px;
 }
 
 .post .icons {
     width: 48px;
     border-top: solid 1px #f1f1f1;
-    margin-top: 12px;
+    margin-left: 5px;
     padding-top: 7px;
 }
 
@@ -599,6 +599,11 @@ td.chbox {
     padding: 0 30px 0 94px;
 }
 
+.postinfotop {
+    border-bottom: solid 1px #f1f1f1;
+    line-height: 50px;
+    padding: 0 30px 0 94px;
+}
 
 .postinfobot .likeblock {
     width: 120px;
@@ -655,7 +660,6 @@ td.chbox {
 .down {
     color: #db7a7a;
     font-size: 12px;
-    margin-left: 20px;
 }
 
 a.up:hover {
@@ -768,10 +772,10 @@ a.down:hover {
     box-shadow: none;
     border: none;
     background-color: #f1f1f1;
-    padding: 20px;
+    padding: 0px 20px;
     font-size: 14px;
     color: #989c9e;
-    font-family: 'Open Sans Light', sans-serif; 
+    font-family: 'Open Sans Light', sans-serif;
     margin-bottom: 20px;
     height: 50px;
 }

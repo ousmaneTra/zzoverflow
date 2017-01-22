@@ -3,12 +3,15 @@ package fr.isima.zzoverflow
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityUtils
 
-@Secured('ROLE_USER')
+@Secured(['IS_AUTHENTICATED_ANONYMOUSLY']) 
 @Transactional(readOnly = true)
 class AnswerController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: ["POST","GET"], update: "PUT", delete: "DELETE", process:"POST"]
+
+    def springSecurityService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -23,9 +26,23 @@ class AnswerController {
         respond new Answer(params)
     }
 
+ 
+    @Secured("ROLE_USER")
     @Transactional
-    def save(Answer answer) {
+    def save() {
+
+        def answer
+        if(session.body && session.idQst){
+            answer = new Answer(
+                                body : session.body, 
+                                upvote : 0, 
+                                downvote : 0,
+                                user : springSecurityService.getCurrentUser(), 
+                                question : session.question) 
+        }
+
         println(answer)
+
         if (answer == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -40,14 +57,23 @@ class AnswerController {
 
         answer.save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'answer.label', default: 'Answer'), answer.id])
-                redirect(controller : "question", action : "show", id : params.question.id )
-            }
-            '*' { respond answer, [status: CREATED] }
-        }
+        redirect(controller : "question", action : "show", id : answer.question.id )
+        
     }
+
+    def process() {
+
+        if(params.body && params.question.id){
+            session["body"]     = params.body
+            session["idQst"]    = params.question.id
+            session["question"] = params.question
+            println(session)
+        }
+        redirect(action : "save")
+
+    }
+
+    
 
     def edit(Answer answer) {
         respond answer
@@ -55,6 +81,7 @@ class AnswerController {
 
     @Transactional
     def update(Answer answer) {
+
         if (answer == null) {
             transactionStatus.setRollbackOnly()
             notFound()
