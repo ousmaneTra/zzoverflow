@@ -1,20 +1,13 @@
 package fr.isima.zzoverflow
 
-class Question {
+class Question extends Post{
 
     String title
-    String body
     int nbView
-    int upvote
-    int downvote
     boolean solved
     Answer correct
-    Date dateCreated
-    Date lastUpdated
 
     static hasMany = [tags : Tag, answers : Answer]
-
-    static belongsTo = [user : User]
 
     static constraints = {
         correct(nullable : true)
@@ -22,8 +15,6 @@ class Question {
     }
 
     static mapping = {
-        autoTimestamp true
-        body type: 'text'
     }
 
     String toString(){

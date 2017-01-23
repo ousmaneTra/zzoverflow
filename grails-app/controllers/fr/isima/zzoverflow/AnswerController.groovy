@@ -61,7 +61,8 @@ class AnswerController {
         new Activity(type: ActivityType.ANSWER_QUESTION, answer: answer, user: springSecurityService.getCurrentUser()).save flush:true
 
 
-        redirect(controller : "question", action : "show", id : answer.question.id )   
+        redirect(controller : "question", action : "show", id : answer.question.id )
+          
     }
 
     def process() {
