@@ -68,10 +68,15 @@
 								    </g:if>
                                 </div> 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><g:link role="menuitem" tabindex="-1" controller="user" action="profile">My Profile</g:link></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-2" href="#">Inbox</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-3" href="${createLink(uri: '/logoff')}">Log Out</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-4" href="04_new_account.html">Create account</a></li>
+                                    <li role="presentation">
+                                        <g:link role="menuitem" tabindex="-1" controller="user" action="profile">My Profile</g:link>
+                                    </li>
+                                    <li role="presentation">
+                                        <g:link role="menuitem" tabindex="-1" controller="user" action="profile">My Acitivity feed</g:link>
+                                    </li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-3" href="${createLink(uri: '/logoff')}">Log Out</a>
+                                    </li>
                                 </ul>
                             </div>
                             

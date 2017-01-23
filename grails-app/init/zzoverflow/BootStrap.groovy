@@ -62,7 +62,7 @@ class BootStrap {
                                 upvote : 0,
                                 downvote : 0,
                                 solved : false)
-                                .addToTags(tag)
+                                .addToTags(tag2)
         question2.setUser(user)                    
 
         def question3 = new Question(
