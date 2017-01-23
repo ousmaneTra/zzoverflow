@@ -1,20 +1,13 @@
 package fr.isima.zzoverflow
 
-class Answer {
+class Answer extends Post{
 
-    String body
-    int upvote
-    int downvote
-    Date dateCreated
-    Date lastUpdated
-
-    static belongsTo = [user : User, question : Question]
+    static belongsTo = [question : Question]
 
     static constraints = {
     }
 
     static mapping = {
-        autoTimestamp true
     }
 
     String toString(){

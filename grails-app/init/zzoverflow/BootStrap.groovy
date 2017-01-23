@@ -50,9 +50,10 @@ class BootStrap {
                                 nbView : 1, 
                                 upvote : 0,
                                 downvote : 0,
-                                solved : true, 
-                                user : user)
-                                .addToTags(tag)  
+                                solved : true)
+                                .addToTags(tag)
+
+        question.setUser(user)                        
 
         def question2 = new Question(
                                 title : 'What Instagram Ads Will Look Like, What Other social networks Ads Will Look Like', 
@@ -60,9 +61,9 @@ class BootStrap {
                                 nbView : 1, 
                                 upvote : 0,
                                 downvote : 0,
-                                solved : false, 
-                                user : user)
-                                .addToTags(tag) 
+                                solved : false)
+                                .addToTags(tag)
+        question2.setUser(user)                    
 
         def question3 = new Question(
                                 title : 'The Future of Magazines Is on Tablets', 
@@ -70,16 +71,17 @@ class BootStrap {
                                 nbView : 1, 
                                 upvote : 0,
                                 downvote : 0,
-                                solved : false, 
-                                user : user)
-                                .addToTags(tag)                                                   
+                                solved : false)
+                                .addToTags(tag) 
+        question3.setUser(user)
+                                                                                  
 
         def answer   = new Answer(
                                 body : 'This is the solution body !!!', 
                                 upvote : 0, 
                                 downvote : 0,
-                                user : user2, 
-                                question : question)                        
+                                question : question)
+        answer.setUser(user)                 
 
         tag.save()
         tag2.save()
