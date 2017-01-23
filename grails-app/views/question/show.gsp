@@ -39,14 +39,18 @@
                         <div class="postinfobot">
 
                             <div class="likeblock pull-left">
-                                <a href="#" class="up">
-                                    <i class="fa fa-thumbs-o-up"></i>
-                                    ${question.upvote}
-                                </a>
-                                <a href="#" class="down">
-                                    <i class="fa fa-thumbs-o-down"></i>
-                                    ${question.downvote}
-                                </a>
+                                <div id="upvote" class="up">
+                                    <i class="fa fa-thumbs-o-up clickable"></i>
+                                    <span class="upvalue">
+                                        ${question.upvote}
+                                    </span>
+                                </div>
+                                <div id="downvote" class="down">
+                                    <i class="fa fa-thumbs-o-down clickable"></i>
+                                    <span class="downvalue">
+                                        ${question.downvote}
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="prev pull-left">                                        
@@ -247,6 +251,38 @@
                 </div>
             </div>
         </div>
-    
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $("#upvote").click(function(){
+                console.log("upvote")
+                //var upvalue = $(".upvalue").text()
+                //var number = Number(upvalue) + 1
+                //$(".upvalue").text(number)
+                        $.ajax({
+                            url: "/question/upVote",
+                            type:"post",
+                            success: function(data) {
+                                console.log(data); //<-----this logs the data in browser's console
+                            },
+                            error: function(xhr){
+                                console.log(xhr.responseText); //<----when no data alert the err msg
+                            }
+                        });
+            });
+            $("#downvote").click(function(){
+                console.log("downvote")
+                var downvalue = $(".downvalue").text()
+                var number = Number(downvalue) - 1
+                $(".downvalue").text(number)
+            });
+        });
+        
+
+    </script>
+
+
     </body>
 </html>
