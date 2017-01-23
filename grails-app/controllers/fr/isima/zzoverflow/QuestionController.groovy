@@ -15,13 +15,14 @@ class QuestionController {
     
 
     def index(Integer max) {
+
+        // Retireve a questions list to display
         params.max   = Math.min(max ?: 10, 100)
         params.sort  = "dateCreated"
         params.order = "desc"
-        
-        def list       = []
-        def duration   = [:]
-        def nbComments = [:]
+        def list        = []
+        def duration    = [:]
+        def nbComments  = [:]
         list = Question.list(params)
 
         list.each { post ->
@@ -29,15 +30,53 @@ class QuestionController {
             nbComments[post.id] = post.answers.size()
         }
 
+        // Retireve the most important questions for right sidebar
+        params.max   = 7
+        params.sort  = "upvote"
+        params.order = "desc"
+        def importantQst    = Question.list(params)
+
+        // Retrieve Tags for right sidebar
+        def occuTag     = 0
+        def listTag     = Tag.list()
+        listTag.sort{ a,b-> 
+            b.questions.size().compareTo(a.questions.size())
+        }
+        listTag.each { tag ->
+            occuTag += tag.questions.size()
+        }
+
+        // Get current user
         def currentUser = springSecurityService.getCurrentUser() 
         
-        [questionCount: Question.count(), list : list, duration : duration, comments : nbComments, currentUser : currentUser]
+        [questionCount: Question.count(), list : list, duration : duration, comments : nbComments, currentUser : currentUser, 
+                                          listTag : listTag, occuTag : occuTag,
+                                          importantQst : importantQst]
     }
 
     def show(Question question) {
+        // Tags of right sidebar
+        def occuTag     = 0
+        def listTag     = Tag.list()
+        listTag.sort{ a,b-> 
+            b.questions.size().compareTo(a.questions.size())
+        }
+        listTag.each { tag ->
+            occuTag += tag.questions.size()
+        }
+
+        // Retireve the most important questions for right sidebar
+        params.max   = 7
+        params.sort  = "upvote"
+        params.order = "desc"
+        def importantQst    = Question.list(params)
+
+        // Increment nbView
         question.nbView++
+
+        // Retrieve loggedin user
         def currentUser = springSecurityService.getCurrentUser() 
-        [question : question, currentUser : currentUser ]
+        [question : question, currentUser : currentUser, listTag : listTag, occuTag : occuTag, importantQst : importantQst ]
     }
 
     @Secured('ROLE_USER')

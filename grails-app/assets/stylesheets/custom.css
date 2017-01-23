@@ -391,6 +391,7 @@ table.poll {
     height: 31px;
     border-radius: 2px;
     box-shadow: none;
+    margin : 0;
 }
 
 
