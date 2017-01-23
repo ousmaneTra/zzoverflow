@@ -49,8 +49,7 @@ class User implements Serializable {
 		autoTimestamp true
 	}
 
-	static hasMany = [questions : Question, 
-                        answers : Answer,
+	static hasMany = [posts : Post, 
                         badges  : Badge,
 						activities: Activity]
 
