@@ -60,15 +60,8 @@ class AnswerController {
         //Create new Activity
         new Activity(type: ActivityType.ANSWER_QUESTION, answer: answer, user: springSecurityService.getCurrentUser()).save flush:true
 
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'answer.label', default: 'Answer'), answer.id])
-                redirect answer
-            }
-            '*' { respond answer, [status: CREATED] }
 
-        redirect(controller : "question", action : "show", id : answer.question.id )
-        }   
+        redirect(controller : "question", action : "show", id : answer.question.id )   
     }
 
     def process() {
