@@ -71,7 +71,7 @@ class QuestionControllerSpec extends Specification {
             Question.count() == 1
             */
     }
-
+/*
     void "Test that the show action returns the correct model"() {
         when:"The show action is executed with a null domain"
             controller.show(null)
@@ -86,7 +86,7 @@ class QuestionControllerSpec extends Specification {
 
         then:"A model is populated containing the domain instance"
             model.question == question
-    }
+    }*/
 
     void "Test that the edit action returns the correct model"() {
         when:"The edit action is executed with a null domain"
