@@ -39,15 +39,15 @@
                         <div class="postinfobot">
 
                             <div class="likeblock pull-left">
-                                <div id="upvote" class="up">
+                                <div class="upvote up" data-id="${question.id}">
                                     <i class="fa fa-thumbs-o-up clickable"></i>
-                                    <span class="upvalue">
+                                    <span id="upvalue${question.id}">
                                         ${question.upvote}
                                     </span>
                                 </div>
-                                <div id="downvote" class="down">
+                                <div class="downvote down" data-id="${question.id}">
                                     <i class="fa fa-thumbs-o-down clickable"></i>
-                                    <span class="downvalue">
+                                    <span id="downvalue${question.id}">
                                         ${question.downvote}
                                     </span>
                                 </div>
@@ -109,14 +109,18 @@
                             <div class="postinfobot">
 
                                 <div class="likeblock pull-left">
-                                    <a href="#" class="up">
-                                        <i class="fa fa-thumbs-o-up"></i>
-                                        ${answer.upvote}
-                                    </a>
-                                    <a href="#" class="down">
-                                        <i class="fa fa-thumbs-o-down"></i>
-                                        ${answer.downvote}
-                                    </a>
+                                    <div class="upvote up" data-id="${answer.id}">
+                                        <i class="fa fa-thumbs-o-up clickable"></i>
+                                        <span id="upvalue${answer.id}">
+                                            ${answer.upvote}
+                                        </span>
+                                    </div>
+                                    <div  class="downvote down" data-id="${answer.id}">
+                                        <i class="fa fa-thumbs-o-down clickable"></i>
+                                        <span id="downvalue${answer.id}">
+                                            ${answer.downvote}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="prev pull-left">                                        
@@ -253,31 +257,63 @@
         </div>
 
 
+    
     <script type="text/javascript">
 
         $(document).ready(function(){
-            $("#upvote").click(function(){
-                console.log("upvote")
-                //var upvalue = $(".upvalue").text()
-                //var number = Number(upvalue) + 1
-                //$(".upvalue").text(number)
-                        $.ajax({
-                            url: "/question/upVote",
-                            type:"post",
-                            success: function(data) {
-                                console.log(data); //<-----this logs the data in browser's console
+            $(".upvote").click(function(){
+                var id = this.getAttribute('data-id')
+                <sec:ifLoggedIn>
+                       $.ajax({
+                            method: "POST",
+                            url: "${g.createLink(controller:'vote',action:'save')}",
+                            data: {                            
+                                'post.id' : id,
+                                'user.id' : ${currentUser.id},
+                                'vote'      : '1'
                             },
-                            error: function(xhr){
-                                console.log(xhr.responseText); //<----when no data alert the err msg
+                            success: function (data) {
+                                $("#upvalue"+id).text(data)
+                            },
+                            error: function (request, status, error) {
+                                alert(error)
+                            },
+                            complete: function () {
                             }
                         });
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    alert("You are not logged in. Please log in and try again")
+                </sec:ifNotLoggedIn>
             });
-            $("#downvote").click(function(){
-                console.log("downvote")
-                var downvalue = $(".downvalue").text()
-                var number = Number(downvalue) - 1
-                $(".downvalue").text(number)
-            });
+            $(".downvote").click(function(){
+                var id = this.getAttribute('data-id')
+                <sec:ifLoggedIn>
+                       $.ajax({
+                            method: "POST",
+                            url: "${g.createLink(controller:'vote',action:'save')}",
+                            data: {                            
+                                'post.id' : id,
+                                'user.id' : ${currentUser.id},
+                                'vote'      : '-1'
+                            },
+                            success: function (data) {
+                                $("#downvalue"+id).text(data)
+                            },
+                            error: function (request, status, error) {
+                                alert(status)
+                                alert(error)
+                                alert(request)
+                            },
+                            complete: function () {
+                            }
+                        });
+                
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    alert("You are not logged in. Please log in and try again")
+                </sec:ifNotLoggedIn>
+            });            
         });
         
 

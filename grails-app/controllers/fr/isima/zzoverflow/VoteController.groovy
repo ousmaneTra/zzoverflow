@@ -23,29 +23,24 @@ class VoteController {
         respond new Vote(params)
     }
 
+    @Secured('ROLE_USER')
     @Transactional
-    def save(Vote vote) {
-        if (vote == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        if (vote.hasErrors()) {
-            transactionStatus.setRollbackOnly()
-            respond vote.errors, view:'create'
-            return
-        }
-
-        vote.save flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'vote.label', default: 'Vote'), vote.id])
-                redirect vote
+    def save() {
+        def vote = Vote.findByUserAndPost(User.get(params.user.id), Post.get(params.post.id))
+        def post = Post.get(params.post.id)
+        if(!vote){
+            if(params.vote == '1'){
+                params.up = true
+                post.upvote++
             }
-            '*' { respond vote, [status: CREATED] }
+            else {
+                params.up = false
+                post.downvote--
+            }
+            vote = new Vote(params)
+            vote.save flush:true
         }
+        render (params.vote == '1' ? post.upvote : post.downvote )
     }
 
     def edit(Vote vote) {
