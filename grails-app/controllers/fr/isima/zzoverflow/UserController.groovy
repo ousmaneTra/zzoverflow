@@ -120,7 +120,7 @@ class UserController {
         // List of OK mime-types
         if (!okcontents.contains(f.getContentType())) {
             flash.message = "Avatar must be one of: ${okcontents}"
-            render(view:'select_avatar', model:[user:user])
+            render(view:'changeAvatar', model:[user:user])
             return
         }
 
