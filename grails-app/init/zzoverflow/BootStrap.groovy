@@ -18,24 +18,20 @@ class BootStrap {
         def tag2         = new Tag(name : 'groovy').save()
 
         def requirement = new Requirement(name :'score', value :5).save()
-        
-        def badgeType   = new BadgeType(name :'question')
-        badgeType.save()
                             
 
-        def badge       = new Badge(name : 'altruist', requirement : requirement, badgeType : badgeType ).save()
+        def badge       = new Badge(name : 'altruist').save()
    
 
         def user        = new User(username : 'toto', password : 'toto', name: 'To to') 
-                                .addToBadges(badge)
                                 .save()
+        UserBadge.create user, badge
 
         UserRole.create user, userRole
                         
         def user2       = new User(username : 'john', password : 'john', name: 'John Doe') 
-                                .addToBadges(badge)
                                 .save()  
-
+        UserBadge.create user2, badge
         UserRole.create user2, userRole
 
 

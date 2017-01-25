@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(BadgeType)
-class BadgeTypeSpec extends Specification {
+@TestFor(UserBadge)
+class UserBadgeSpec extends Specification {
 
     def setup() {
     }
@@ -15,10 +15,8 @@ class BadgeTypeSpec extends Specification {
     def cleanup() {
     }
 
-    /*
     void "test something"() {
         expect:"fix me"
             true == false
     }
-    */
 }
