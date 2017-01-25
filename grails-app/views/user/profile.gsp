@@ -8,11 +8,11 @@
     	<asset:stylesheet src="profile/profile.css"/>
 	</head>
     <body>
-<div id="user-profile-2" class="user-profile">
-	<g:if test="${flash.message}">
-    	<div class="alert alert-info" role="status">${flash.message}</div>
-    </g:if>
-		<div class="tabbable">
+	<div id="user-profile-2" class="user-profile">
+		<g:if test="${flash.message}">
+			<div class="alert alert-info" role="status">${flash.message}</div>
+		</g:if>
+		<div class="tabbable align-table">
 			<ul class="nav nav-tabs padding-18">
 				<li class="active">
 					<a data-toggle="tab" href="#home">
@@ -50,7 +50,7 @@
 							<h4 class="blue">
 								<span class="middle">${currentUser.name}</span>
 
-								<span class="label label-purple arrowed-in-right">
+								<span class="label label-purple arrowed-in-right online">
 									<i class="ace-icon fa fa-circle smaller-80 align-middle"></i>
 									<g:message code="default.profile.online"/>
 								</span>
@@ -81,16 +81,6 @@
 										<span><g:formatDate date="${currentUser.dateCreated}" type="date" style="LONG" formatName="default.date.format"/></span>
 									</div>
 								</div>
-
-								<div class="profile-info-row">
-									<div class="profile-info-name"> Badges </div>
-
-									<div class="profile-info-value">
-										<g:each var="item" in="${currentUser.badges}">
-											<span class="badge">${item.badge.name}</span>
-										</g:each>
-									</div>
-								</div>
 							</div>
 
 							<div class="hr hr-8 dotted"></div>
@@ -105,7 +95,7 @@
 									</div>
 								</div>
 							<div class="space space-4"></div>
-							<g:link class="btn btn-sm btn-block btn-success" action="edit">
+							<g:link class="btn btn-sm edit-button btn-block btn-success" action="edit">
 								<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
 								<span class="bigger-110"><g:message code="default.button.edit.label" default="Edit" /></span>
 							</g:link>
@@ -165,5 +155,96 @@
 			</div>
 		</div>
 	</div>
-    </body>
+	<div class="row">
+		<div class="col-lg-4 col-md-4">  
+			<div class="sidebarblock">
+				<h3>User Badges</h3>
+				<div class="divline"></div>
+				<div class="blocktxt">
+					<form action="#" method="post" class="form">
+						<table class="poll">
+							<tbody>
+								<g:each var="badge" in="${userBadges}" >
+									<tr>
+										<td>
+											<div class="progress">
+												<div class="progress-bar color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+													${badge.badge.name}
+												</div>
+											</div>
+										</td>
+									</tr>
+								</g:each>
+
+						</tbody></table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4">                
+			<!-- -->
+			<div class="sidebarblock">
+				<h3>Questions Badges</h3>
+				<div class="divline"></div>
+				<div class="blocktxt">
+					<form action="#" method="post" class="form">
+						<table class="poll">
+							<tbody>
+								
+								<g:each var="badge" in="${questionBadges}" >
+									<tr>
+										<td>
+											<g:link controller="question" action="show" id="${badge.question.id}">
+												<div class="progress">
+													<div class="progress-bar color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+														${badge.badge.name}
+													</div>
+												</div>
+											</g:link>
+										</td>
+									</tr>
+								</g:each>
+									
+								
+
+						</tbody></table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4">                
+			<!-- -->
+			<div class="sidebarblock">
+				<h3>Answers Badges</h3>
+				<div class="divline"></div>
+				<div class="blocktxt">
+					<form action="#" method="post" class="form">
+						<table class="poll">
+							<tbody>
+								
+								<g:each var="badge" in="${answerBadges}" >
+									<tr>
+										<td>
+											<g:link controller="question" action="show" id="${badge.answer.question.id}">
+												<div class="progress">
+													<div class="progress-bar color1" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+														${badge.badge.name}
+													</div>
+												</div>
+											</g:link>
+										</td>
+									</tr>
+								</g:each>
+									
+								
+
+						</tbody></table>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+</body>
 </html>

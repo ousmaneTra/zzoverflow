@@ -128,3 +128,16 @@ website:   	http://www.themepunch.com
 .ok {
 	color: #1abc9c;
 }
+
+.edit-button {
+	width: 20%;
+	margin-left: 80%;
+}
+
+.align-table{
+	padding: 20px 50px;
+}
+
+.online {
+	color: #69aa46;
+}

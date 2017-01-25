@@ -102,7 +102,11 @@ class UserController {
     }
 
     def profile() {
-		[currentUser : springSecurityService.currentUser ]
+        def currentUser     = springSecurityService.currentUser
+        def userBadges      = UserBadge.findAllByUser(currentUser)
+        def questionBadges  = QuestionBadge.findAll("from QuestionBadge as qb where qb.question.user.id= ?", [currentUser.id])
+        def answerBadges  = AnswerBadge.findAll("from AnswerBadge as ab where ab.answer.user.id= ?", [currentUser.id])
+		[currentUser : currentUser, userBadges : userBadges, questionBadges : questionBadges, answerBadges : answerBadges]
 	}
 
     def changeAvatar(){
