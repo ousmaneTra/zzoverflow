@@ -32,6 +32,7 @@ class VoteController {
             if(params.vote == '1'){
                 params.up = true
                 post.upvote++
+                post.user.reputation+=15
             }
             else {
                 params.up = false
