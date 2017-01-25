@@ -18,4 +18,8 @@ class Post {
     static constraints = {
         body nullable: false, type: 'text'      
     }
+
+    int getScore(){
+        return (upvote - downvote) ;
+    }
 }

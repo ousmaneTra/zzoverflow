@@ -21,10 +21,21 @@ class BadgeService {
     }
 
     void processQuestionBadges(Question question){
-        //1000 view ==> 'Popular Question'
+        //View Baddges
         if(question.nbView == 3) addQuestionBadge(question,"3 views Question") 
         else if(question.nbView == 1000) addQuestionBadge(question,"Popular Question") 
         else if(question.nbView == 2500) addQuestionBadge(question,"Notable Question") 
         else if(question.nbView == 10000) addQuestionBadge(question,"Famous Question") 
+
+        //Score Badges
+        if(question.getScore() == 10) addQuestionBadge(question,"Nice Question") 
+        else if(question.getScore() == 25) addQuestionBadge(question,"Good Question") 
+        else if(question.getScore() == 100) addQuestionBadge(question,"Great Question")
+    }
+
+    void processAnswerBadges(Answer answer){
+        if(answer.getScore() == 10) addAnswerBadge(answer,"Nice Answer") 
+        else if(answer.getScore() == 25) addAnswerBadge(answer,"Good Answer") 
+        else if(answer.getScore() == 100) addAnswerBadge(answer,"Great Answer") 
     }
 }

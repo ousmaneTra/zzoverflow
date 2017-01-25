@@ -10,6 +10,8 @@ class VoteController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def badgeService 
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Vote.list(params), model:[voteCount: Vote.count()]
@@ -40,6 +42,13 @@ class VoteController {
             }
             vote = new Vote(params)
             vote.save flush:true
+            if(post instanceof Answer){
+                badgeService.processAnswerBadges(post)
+            }
+            else if (post instanceof Question){
+                badgeService.processQuestionBadges(post)
+            }
+
         }
         render (params.vote == '1' ? post.upvote : post.downvote )
     }
