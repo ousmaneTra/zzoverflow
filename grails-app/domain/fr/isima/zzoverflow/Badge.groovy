@@ -3,11 +3,10 @@ package fr.isima.zzoverflow
 class Badge {
 
     String name
-
-    Requirement requirement
+    BadgeType badgeType
     
     static hasMany   = [users : User]
-    static belongsTo = [badgeType : BadgeType]
+    static belongsTo = [User,BadgeType]
  
     static constraints = {
     }
