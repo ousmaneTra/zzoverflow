@@ -35,12 +35,12 @@
                                 <div class="dropdown" style="display: inline;">
                                     <a data-toggle="dropdown" href="#" style="color: #f48024;" >
                                         <g:set var="lang" value="${RequestContextUtils.getLocale(request)}" />
-                                        .${lang}
+                                        .${lang.toString().substring(0,2)}
                                         <b class="caret"></b>
                                     </a> 
                                     <ul class="dropdown-menu" role="menu" >
                                         <li role="presentation">
-                                            <a role="menuitem" tabindex="-1" href="${createLink(uri: '/?lang=en')}">.en</a>
+                                            <a role="menuitem" tabindex="-1" href="${createLink(uri: request.forwardURI+'?lang=en')}">.en</a>
                                         </li>
                                         <li role="presentation">
                                             <a role="menuitem" tabindex="-2" href="${createLink(uri: '/?lang=fr')}">.fr</a>

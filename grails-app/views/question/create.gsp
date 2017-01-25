@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <g:textField class="form-control" name="title"  id="title" placeholder="${message(code: 'default.question.title.placeholder.label')}" type="text"  />
+                                        <g:textField required="required" class="form-control" name="title"  id="title" placeholder="${message(code: 'default.question.title.placeholder.label')}" type="text"  />
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <g:textArea class="form-control textarea" rows="3" name="body" id="Message" placeholder="${message(code: 'default.question.body.placeholder.label')}" /> 
+                                        <g:textArea required="required" class="form-control textarea" rows="3" name="body" id="Message" placeholder="${message(code: 'default.question.body.placeholder.label')}" /> 
                                     </div>
                                 </div>
                             </div>
