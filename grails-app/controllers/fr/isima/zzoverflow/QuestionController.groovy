@@ -154,6 +154,8 @@ class QuestionController {
             'previous': previous,
             'current' : question.correct.id
         ]
+        //Create new Activity
+        new Activity(type: ActivityType.MARK_AS_SOLVED, post: question, user: springSecurityService.getCurrentUser()).save flush:true
         render responseData as JSON
     }
 

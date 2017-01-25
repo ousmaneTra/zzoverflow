@@ -124,6 +124,17 @@
                             <g:formatDate date="${activity.dateCreated}" type="time" />
                         </div>
                     </g:if>
+                    <g:if test="${activity.type.toString() == 'MARK_AS_SOLVED'}">
+                        You have marked as solved the question : 
+                        <g:link action="show" controller="question" id="${activity.post.id}">
+                            " ${activity?.post?.title} "
+                        </g:link>
+                         <div class="date-feed">
+                            <g:formatDate date="${activity.dateCreated}" type="date" style="LONG"/>
+                                    @                                                
+                            <g:formatDate date="${activity.dateCreated}" type="time" />
+                        </div>
+                    </g:if>
 
                     <!--a href="#">This Dock Turns Your iPhone Into a Bedside Lamp</a-->
                 </div>

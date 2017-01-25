@@ -152,6 +152,11 @@
 											<br/>
 											${activity?.post?.body?.substring(0,1)+' ...'}
 										</g:if>
+										<g:if test="${activity.type.toString() == 'MARK_AS_SOLVED'}">
+											<g:message code="default.activity.marksolved"/> <g:link action="show" controller="question" id="${activity.post.id}">question</g:link>
+											<br/>
+											${activity?.post?.title}
+										</g:if>
 										
 										<div class="time">
 											<i class="ace-icon fa fa-clock-o bigger-110"></i>
