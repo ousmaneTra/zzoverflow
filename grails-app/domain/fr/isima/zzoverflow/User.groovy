@@ -53,7 +53,7 @@ class User implements Serializable {
                         badges  : Badge,
 						activities: Activity]
 
-	static belongsTo = Badge
+	//static belongsTo = Badge
 
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this)*.role

@@ -3,7 +3,7 @@
     <head>
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
-        <title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <title><g:message code="default.profile.update.label"/></title>
     </head>
     <body>
         <a href="#edit-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -29,7 +29,7 @@
                             <g:textArea  name="aboutMe" value="${user.aboutMe}" />
                         </div>
                     <div class="fieldcontain required">
-                        <button class="btn main-btn" type="submit" value="${message(code: 'l', default: 'Update')}"><g:message code="default.button.update.label" default="Update"/></button>
+                        <button class="btn main-btn" type="submit"><g:message code="default.button.update.label" default="Update"/></button>
                      </div>
                 </fieldset>
             </g:form>

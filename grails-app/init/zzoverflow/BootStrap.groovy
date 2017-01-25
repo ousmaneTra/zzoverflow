@@ -19,8 +19,8 @@ class BootStrap {
 
         def requirement = new Requirement(name :'score', value :5).save()
         
-
-        def badgeType   = new BadgeType(name :'question').save()
+        def badgeType   = new BadgeType(name :'question')
+        badgeType.save()
                             
 
         def badge       = new Badge(name : 'altruist', requirement : requirement, badgeType : badgeType ).save()
@@ -81,12 +81,9 @@ class BootStrap {
                                 upvote : 0, 
                                 downvote : 0,
                                 question : question)
-        answer.setUser(user)  
-        answer.save()   
-        
+        answer.setUser(user)                 
+        answer.save() 
         question.setCorrect(answer)            
-
-        
 
     }
 
