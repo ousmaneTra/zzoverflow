@@ -97,11 +97,11 @@ class QuestionController {
         if(params.tags)
             if (params.tags.class.isArray()){
                 for(tagName in params.tags){
-                    def tag = Tag.findOrCreateByName(tagName).save()
+                    def tag = Tag.findOrCreateByName(tagName.toLowerCase()).save()
                     tagList << tag.id
                 }
             }else{
-                def tag = Tag.findOrCreateByName(params.tags).save()
+                def tag = Tag.findOrCreateByName(params.tags.toLowerCase()).save()
                 tagList << tag.id
             }
 
