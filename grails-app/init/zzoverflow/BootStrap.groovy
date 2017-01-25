@@ -6,7 +6,7 @@ import grails.plugin.mail.*
 class BootStrap {
 
     def init = { servletContext ->
-
+    
         def userRole = new Role('ROLE_USER').save()
 
         def me       = new User(username: 'user@gmail.com', password: 'pass', name:'USER user').save()

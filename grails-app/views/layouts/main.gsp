@@ -12,6 +12,7 @@
         <g:layoutHead/>
 
         <asset:javascript src="application.js"/>
+        <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 
     </head>
     <body>
@@ -23,12 +24,29 @@
                     <div class="row">
                         <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo ">
                             <a href="${createLink(uri: '/')}">
-                                <asset:image src="question/logo1.jpg" class="logo-size" alt="" />
+                                <asset:image src="question/logo.png" class="logo-size" alt="" />
                             </a>
                         </div>
                         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
                             <div>
-                                <a  class="logo-text" href="${createLink(uri: '/')}">ZZOverflow</a> 
+                                <div style="display: inline;">
+                                    <a  class="logo-text" href="${createLink(uri: '/')}">ZZOverflow</a>
+                                </div> 
+                                <div class="dropdown" style="display: inline;">
+                                    <a data-toggle="dropdown" href="#" style="color: #f48024;" >
+                                        <g:set var="lang" value="${RequestContextUtils.getLocale(request)}" />
+                                        .${lang}
+                                        <b class="caret"></b>
+                                    </a> 
+                                    <ul class="dropdown-menu" role="menu" >
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="${createLink(uri: '/?lang=en')}">.en</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-2" href="${createLink(uri: '/?lang=fr')}">.fr</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
@@ -111,7 +129,7 @@
             <footer>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#"><asset:image src="question/logo1.jpg" class="logo-size" alt=""/></a></div>
+                        <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#"><asset:image src="question/logo.png" class="logo-size" alt=""/></a></div>
                         <div class="col-lg-8 col-xs-9 col-sm-5 ">Copyrights 2017, zzoverflow.com</div>
                         <div class="col-lg-3 col-xs-12 col-sm-5 sociconcent">
                             <ul class="socialicons">

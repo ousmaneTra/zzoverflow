@@ -20,7 +20,9 @@
         <script>
             $(function(){
                 $("#myTags").tagit({
-                    placeholderText : "Tags"
+                    placeholderText : "Tags",
+                    availableTags: ["c++", "java", "php", "javascript", "ruby", "python", "c"]
+
                 });
             });
         </script>

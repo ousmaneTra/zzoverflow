@@ -28,15 +28,15 @@
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
                                             <a href="${createLink(uri: '/')}">
-                                                <asset:image src="question/logo1.jpg" class="logo-size" alt="" />
+                                                <asset:image src="question/logo.png" class="logo-size" alt="" />
                                             </a>
                                         </div>
                                     </div>
                                     <div class="posttext pull-left">
 
                                         <g:if test='${flash.message}'>
-			<div class="login_message">${flash.message}</div>
-		</g:if>
+                                            <div class="login_message">${flash.message}</div>
+                                        </g:if>
 
                                         <div>
                                             <input placeholder="Enter your username" class="form-control" type="text" name="${usernameParameter ?: 'username'}" id="username" />                                
