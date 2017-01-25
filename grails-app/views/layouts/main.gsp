@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-lg-1 col-xs-3 col-sm-2 col-md-2 logo ">
                             <a href="${createLink(uri: '/')}">
-                                <asset:image src="question/logo1.jpg" class="logo-size" alt="" />
+                                <asset:image src="question/logo.png" class="logo-size" alt="" />
                             </a>
                         </div>
                         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
@@ -111,7 +111,7 @@
             <footer>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#"><asset:image src="question/logo1.jpg" class="logo-size" alt=""/></a></div>
+                        <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#"><asset:image src="question/logo.png" class="logo-size" alt=""/></a></div>
                         <div class="col-lg-8 col-xs-9 col-sm-5 ">Copyrights 2017, zzoverflow.com</div>
                         <div class="col-lg-3 col-xs-12 col-sm-5 sociconcent">
                             <ul class="socialicons">

@@ -17,7 +17,7 @@ class Question extends Post{
     }
 
     String toString(){
-        return "tags  = " + tags + " /title = " + title + " / body = " + body + " /nbView = " + nbView + " /solved = " + solved + " /user = " + user + "\n";
+        return "tags  = " + tags + " /title = " + title + " / body = " + body + " /nbView = " + nbView  + " /user = " + user + "\n";
     }
 
 }

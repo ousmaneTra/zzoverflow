@@ -28,7 +28,7 @@
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
                                             <a href="${createLink(uri: '/')}">
-                                                <asset:image src="question/logo1.jpg" class="logo-size" alt="" />
+                                                <asset:image src="question/logo.png" class="logo-size" alt="" />
                                             </a>
                                         </div>
                                     </div>
