@@ -34,7 +34,7 @@
                         <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
                             <div class="wrap">
                                 <form action="#" method="post" class="form">
-                                    <div class="pull-left txt"><input class="form-control" placeholder="Search Q&A" type="text"></div>
+                                    <div class="pull-left txt"><input class="form-control" placeholder="${message(code: 'default.question.search.label')}" type="text"></div>
                                     <div class="pull-right"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></div>
                                     <div class="clearfix"></div>
                                 </form>
@@ -44,7 +44,7 @@
                             <div class="stnt pull-left">                            
                                     <g:link class="create" controller="question" action="create">
                                          <button class="btn btn-primary">
-                                            Ask a Question
+                                            <g:message code="default.question.ask.label"/>
                                           </button>
                                     </g:link>
                             </div>
