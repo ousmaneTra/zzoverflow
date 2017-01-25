@@ -4,13 +4,11 @@ class Activity {
     
     ActivityType type
     Date dateCreated
-    Question question
-    Answer answer
+    Post post
 
     static belongsTo = [user : User]
 
     static constraints = {
-        question nullable: true
-        answer nullable: true
+        post nullable: true
     }
 }

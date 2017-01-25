@@ -60,8 +60,8 @@
 
                     <g:if test="${activity.type.toString() == 'ASK_QUESTION'}">
                         You have asked a question : 
-                        <g:link action="show" controller="question" id="${activity.question.id}">
-                            " ${activity?.question?.title} "
+                        <g:link action="show" controller="question" id="${activity.post.id}">
+                            " ${activity?.post?.title} "
                         </g:link>
                         <div class="date-feed">
                             <g:formatDate date="${activity.dateCreated}" type="date" style="LONG"/>
@@ -71,8 +71,52 @@
                     </g:if>
                     <g:if test="${activity.type.toString() == 'ANSWER_QUESTION'}">
                         You have answered to a question : 
-                        <g:link action="show" controller="question" id="${activity.answer.question.id}">
-                            " ${activity?.answer?.body} "
+                        <g:link action="show" controller="question" id="${activity.post.question.id}">
+                            " ${activity?.post?.body} "
+                        </g:link>
+                         <div class="date-feed">
+                            <g:formatDate date="${activity.dateCreated}" type="date" style="LONG"/>
+                                    @                                                
+                            <g:formatDate date="${activity.dateCreated}" type="time" />
+                        </div>
+                    </g:if>
+                    <g:if test="${activity.type.toString() == 'UPVOTE_QUESTION'}">
+                        You have upvoted a question : 
+                        <g:link action="show" controller="question" id="${activity.post.id}">
+                            " ${activity?.post?.title} "
+                        </g:link>
+                         <div class="date-feed">
+                            <g:formatDate date="${activity.dateCreated}" type="date" style="LONG"/>
+                                    @                                                
+                            <g:formatDate date="${activity.dateCreated}" type="time" />
+                        </div>
+                    </g:if>
+                     <g:if test="${activity.type.toString() == 'DOWNVOTE_QUESTION'}">
+                        You have downvoted a question : 
+                        <g:link action="show" controller="question" id="${activity.post.id}">
+                            " ${activity?.post?.title} "
+                        </g:link>
+                         <div class="date-feed">
+                            <g:formatDate date="${activity.dateCreated}" type="date" style="LONG"/>
+                                    @                                                
+                            <g:formatDate date="${activity.dateCreated}" type="time" />
+                        </div>
+                    </g:if>
+                    <g:if test="${activity.type.toString() == 'UPVOTE_ANSWER'}">
+                        You have upvoted an answer : 
+                        <g:link action="show" controller="question" id="${activity.post.question.id}">
+                            " ${activity?.post?.body.substring(0,1) + '...'} "
+                        </g:link>
+                         <div class="date-feed">
+                            <g:formatDate date="${activity.dateCreated}" type="date" style="LONG"/>
+                                    @                                                
+                            <g:formatDate date="${activity.dateCreated}" type="time" />
+                        </div>
+                    </g:if>
+                    <g:if test="${activity.type.toString() == 'DOWNVOTE_ANSWER'}">
+                        You have donwvoted an answer : 
+                        <g:link action="show" controller="question" id="${activity.post.question.id}">
+                            " ${activity?.post?.body.substring(0,1) + '...'} "
                         </g:link>
                          <div class="date-feed">
                             <g:formatDate date="${activity.dateCreated}" type="date" style="LONG"/>

@@ -118,19 +118,39 @@
 										</g:else>
 										 ${currentUser.name}
 										<g:if test="${activity.type.toString() == 'ASK_QUESTION'}">
-											<g:message code="default.activity.asked"/> <g:link action="show" controller="question" id="${activity.question.id}">question</g:link>
+											<g:message code="default.activity.asked"/> <g:link action="show" controller="question" id="${activity.post.id}">question</g:link>
 											<br/>
-											${activity?.question?.title}
+											${activity?.post?.title}
 										</g:if>
 										<g:if test="${activity.type.toString() == 'ANSWER_QUESTION'}">
-											<g:message code="default.activity.answered"/> <g:link action="show" controller="question" id="${activity.answer.question.id}">question</g:link>
+											<g:message code="default.activity.answered"/> <g:link action="show" controller="question" id="${activity.post.question.id}">question</g:link>
 											<br/>
-											${activity?.answer?.body}
+											${activity?.post?.body}
 										</g:if>
 										<g:if test="${activity.type.toString() == 'EARN_BAGDE'}">
 											<g:message code="default.activity.earned"/> <g:link action="show" controller="question" id="${activity.answer.question.id}">question</g:link>
 											<br/>
 											${activity?.answer?.body}
+										</g:if>
+										<g:if test="${activity.type.toString() == 'UPVOTE_QUESTION'}">
+											<g:message code="default.activity.upvoted"/> <g:link action="show" controller="question" id="${activity.post.id}">question</g:link>
+											<br/>
+											${activity?.post?.title}
+										</g:if>
+										<g:if test="${activity.type.toString() == 'DOWNVOTE_QUESTION'}">
+											<g:message code="default.activity.downvoted"/> <g:link action="show" controller="question" id="${activity.post.id}">question</g:link>
+											<br/>
+											${activity?.post?.title}
+										</g:if>
+										<g:if test="${activity.type.toString() == 'UPVOTE_ANSWER'}">
+											<g:message code="default.activity.upvoted"/> <g:link action="show" controller="question" id="${activity.post.question.id}">answer</g:link>
+											<br/>
+											${activity?.post?.body?.substring(0,1)+' ...'}
+										</g:if>
+										<g:if test="${activity.type.toString() == 'DOWNVOTE_ANSWER'}">
+											<g:message code="default.activity.downvoted"/> <g:link action="show" controller="question" id="${activity.post.question.id}">answer</g:link>
+											<br/>
+											${activity?.post?.body?.substring(0,1)+' ...'}
 										</g:if>
 										
 										<div class="time">

@@ -130,7 +130,7 @@ class QuestionController {
         question.save flush:true
 
         //Create new Activity
-        new Activity(type: ActivityType.ASK_QUESTION, question: question, user: springSecurityService.getCurrentUser()).save flush:true
+        new Activity(type: ActivityType.ASK_QUESTION, post: question, user: springSecurityService.getCurrentUser()).save flush:true
 
         print("4")
         request.withFormat {

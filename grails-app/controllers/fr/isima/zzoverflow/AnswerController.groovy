@@ -59,7 +59,7 @@ class AnswerController {
         answer.save flush:true
 
         //Create new Activity
-        new Activity(type: ActivityType.ANSWER_QUESTION, answer: answer, user: springSecurityService.getCurrentUser()).save flush:true
+        new Activity(type: ActivityType.ANSWER_QUESTION, post: answer, user: springSecurityService.getCurrentUser()).save flush:true
 
 
         redirect(controller : "question", action : "show", id : answer.question.id )
