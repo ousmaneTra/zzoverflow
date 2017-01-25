@@ -14,16 +14,16 @@ class BootStrap {
         UserRole.create me, userRole
 
         
-        def tag         = new Tag(name : 'grails')
-        def tag2         = new Tag(name : 'groovy')
+        def tag         = new Tag(name : 'grails').save()
+        def tag2         = new Tag(name : 'groovy').save()
 
-        def requirement = new Requirement(name :'score', value :5)
+        def requirement = new Requirement(name :'score', value :5).save()
         
 
-        def badgeType   = new BadgeType(name :'question')
+        def badgeType   = new BadgeType(name :'question').save()
                             
 
-        def badge       = new Badge(name : 'altruist', requirement : requirement, badgeType : badgeType )
+        def badge       = new Badge(name : 'altruist', requirement : requirement, badgeType : badgeType ).save()
    
 
         def user        = new User(username : 'toto', password : 'toto', name: 'To to') 
@@ -49,31 +49,31 @@ class BootStrap {
                                 body :  'Today, were looking at three particularly interesting stories. Pinterest added a new location-based feature on Wednesday that uses Place Pins as a way to map out vacations and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for 8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google Wallet is offering a debit card that can take out cash from.', 
                                 nbView : 1, 
                                 upvote : 0,
-                                downvote : 0,
-                                solved : true)
+                                downvote : 0)
                                 .addToTags(tag)
 
-        question.setUser(user)                        
+        question.setUser(user)   
+        question.save()                     
 
         def question2 = new Question(
                                 title : 'What Instagram Ads Will Look Like, What Other social networks Ads Will Look Like', 
                                 body :  "Today, we're looking at three particularly interesting stories. Pinterest added a new location-based feature on Wednesday that uses Place Pins as a way to map out vacations and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for 8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google Wallet is offering a debit card that can take out cash from.",
                                 nbView : 1, 
                                 upvote : 0,
-                                downvote : 0,
-                                solved : false)
+                                downvote : 0)
                                 .addToTags(tag2)
-        question2.setUser(user)                    
+        question2.setUser(user) 
+        question2.save()                    
 
         def question3 = new Question(
                                 title : 'The Future of Magazines Is on Tablets', 
                                 body :  " Eric Schmidt has seen the future of magazines, and it's on the tablet. At a Magazine Publishers Association. Pinterest added a new location-based feature on Wednesday that uses Place Pins as a way to map out vacations and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for 8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google Wallet is offering a debit card that can take out cash from.",
                                 nbView : 1, 
                                 upvote : 0,
-                                downvote : 0,
-                                solved : false)
+                                downvote : 0)
                                 .addToTags(tag) 
         question3.setUser(user)
+        question3.save() 
                                                                                   
 
         def answer   = new Answer(
@@ -81,17 +81,11 @@ class BootStrap {
                                 upvote : 0, 
                                 downvote : 0,
                                 question : question)
-        answer.setUser(user)                 
+        answer.setUser(user)  
+        answer.save()   
+        
+        question.setCorrect(answer)            
 
-        tag.save()
-        tag2.save()
-        requirement.save()
-        badgeType.save()
-        badge.save()
-        question.save()
-        question2.save()
-        question3.save()
-        answer.save()
         
 
     }

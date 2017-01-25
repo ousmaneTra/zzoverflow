@@ -27,7 +27,7 @@
                                 </div>
 
                                 <div class="icons">
-                                    <img src="images/icon1.jpg" alt=""><img src="images/icon4.jpg" alt=""><img src="images/icon5.jpg" alt=""><img src="images/icon6.jpg" alt="">
+                                    <img src="images/icon1.jpg" alt="">
                                 </div>
                             </div>
                             <div class="posttext pull-left">
@@ -95,10 +95,24 @@
                                     </div>
 
                                     <div class="icons">
-                                        <img src="images/icon3.jpg" alt="">
-                                        <img src="images/icon4.jpg" alt="">
-                                        <img src="images/icon5.jpg" alt="">
-                                        <img src="images/icon6.jpg" alt="">
+                                        <!-- Solved question -->
+                                        <g:if test="${question.correct}">
+                                            <!-- Answer is correct -->
+                                            <g:if test="${question.correct.id == answer.id}">
+                                                <i class="fa fa-3x fa-check-circle solved-icon marksolved ok" data-id="${answer.id}" aria-hidden="true"></i>
+                                            </g:if>                                      
+                                            <g:else>
+                                                <!-- Current user is question owner -->
+                                                <g:if test="${currentUser?.id == question.user.id}">
+                                                    <i class="fa fa-3x fa-check-circle solved-icon marksolved nok" data-id="${answer.id}" aria-hidden="true"></i>                                           
+                                                </g:if>
+                                            </g:else>
+                                        </g:if>
+                                        <g:else>
+                                            <g:if test="${question.user.id == currentUser?.id}">
+                                                <i class="fa fa-3x fa-check-circle solved-icon marksolved nok" data-id="${answer.id}" aria-hidden="true"></i>                                           
+                                            </g:if>
+                                        </g:else>
                                     </div>
                                 </div>
                                 <div class="posttext pull-left">
@@ -299,6 +313,41 @@
                             },
                             success: function (data) {
                                 $("#downvalue"+id).text(data)
+                            },
+                            error: function (request, status, error) {
+                                alert(status)
+                                alert(error)
+                                alert(request)
+                            },
+                            complete: function () {
+                            }
+                        });
+                
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    alert("You are not logged in. Please log in and try again")
+                </sec:ifNotLoggedIn>
+            }); 
+            $(".marksolved").click(function(){
+                var answer_id = this.getAttribute('data-id')
+                var element   = $(this)
+                <sec:ifLoggedIn>
+                       $.ajax({
+                            method: "POST",
+                            url: "${g.createLink(controller:'question',action:'solved')}",
+                            data: {   
+                                'question.id' : ${question.id},                         
+                                'answer.id'   : answer_id,
+                                'user.id'     : ${currentUser.id},
+                            },
+                            success: function (data) {
+                                if(data['previous']){
+                                    var previous_correct = $('*[data-id=\''+data['previous']+'\']');
+                                    previous_correct.removeClass('ok')
+                                    previous_correct.addClass('nok')
+                                }
+                                element.removeClass('nok');
+                                element.addClass('ok');
                             },
                             error: function (request, status, error) {
                                 alert(status)
