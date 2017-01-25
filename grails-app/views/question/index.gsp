@@ -31,11 +31,11 @@
                                             <div class="icons">
                                                 <div class="up">
                                                     <i class="fa fa-thumbs-o-up"></i>
-                                                    0
+                                                    ${post.upvote}
                                                 </div>
                                                 <div class="down">
                                                     <i class="fa fa-thumbs-o-down"></i>
-                                                    0
+                                                    ${post.downvote}
                                                 </div>
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="postinfo pull-left">
                                         <div class="comments">
-                                            <g:if test="${post.solved}">
+                                            <g:if test="${post.correct}">
                                                 <div class="commentbg-solved">
                                             </g:if>
                                             <g:else>

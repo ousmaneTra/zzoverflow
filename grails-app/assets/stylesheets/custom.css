@@ -650,18 +650,29 @@ td.chbox {
 .up {
     color: #1abc9c;
     font-size: 12px;
+    display : inline;
 }
 
-.up i,
-.down i {
+.up i{
     font-size: 20px;
     padding-right: 10px;
+}
+
+
+.down i {
+    font-size: 20px;
+    padding-right: 5px;
 }
 
 .down {
     color: #db7a7a;
     font-size: 12px;
+    display : inline;
 }
+
+.clickable {
+    cursor : pointer;
+ }
 
 a.up:hover {
     text-decoration: none;

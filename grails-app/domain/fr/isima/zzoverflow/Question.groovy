@@ -4,7 +4,6 @@ class Question extends Post{
 
     String title
     int nbView
-    boolean solved
     Answer correct
 
     static hasMany = [tags : Tag, answers : Answer]
