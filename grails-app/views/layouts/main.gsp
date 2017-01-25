@@ -48,25 +48,40 @@
                                           </button>
                                     </g:link>
                             </div>
-                            <div class="env pull-left"><i class="fa fa-envelope"></i></div>
+                            <div class="env pull-left">
+                                <i class="fa fa-envelope"></i>
+                            </div>
 
                             <div class="avatar pull-left dropdown">
 
-                                <div data-toggle="dropdown" class="avatar-cursor">
-                                    <!--asset:image id="avatar-user" src="user/${currentUser ? currentUser.id :  '4'}.jpg" alt="" /-->
-                                    <g:if test="${currentUser}">
-                                        <g:if test="${currentUser.avatar}"> 
-									        <img id="avatar-user"  class="avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
-                                            <b class="caret"></b>
-                                            <div class="status green">&nbsp;</div>
-                                        </g:if>
-                                        <g:else>
-                                            <asset:image id="avatar-user"  class="avatar-image" src="user/1.jpg" alt="" /></a> 
-                                            <b class="caret"></b>
-                                            <div class="status green">&nbsp;</div>
-                                        </g:else>
+                                
+                                    <g:if test="${currentUser}"> 
+                                        <div data-toggle="dropdown" class="avatar-cursor">
+                                            <g:if test="${currentUser.avatar}"> 
+                                                <img id="avatar-user"  class="avatar-image" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+                                                <b class="caret"></b>
+                                                <div class="status green">&nbsp;</div>
+                                            </g:if>
+                                            <g:else>
+                                                <asset:image id="avatar-user"  class="avatar-image" src="user/1.jpg" alt="" /></a> 
+                                                <b class="caret"></b>
+                                                <div class="status green">&nbsp;</div>
+                                            </g:else>
+                                        </div>
 								    </g:if>
-                                </div> 
+                                    <g:else>
+                                        <div class="login-link">
+                                            <a  href="${createLink(uri: '/login/auth')}" style="color: #bdc3c7;">
+                                                Log in
+                                            </a>
+                                            /
+                                            <a  href="${createLink(uri: '/register')}" style="color: #bdc3c7;">
+                                                Sign up
+                                            </a>
+
+                                        </div> 
+                                    </g:else>
+                                
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation">
                                         <g:link role="menuitem" tabindex="-1" controller="user" action="profile">My Profile</g:link>

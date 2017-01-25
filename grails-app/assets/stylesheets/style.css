@@ -111,3 +111,7 @@ website:   	http://www.themepunch.com
 	display: inline-block;
 	width: 90%;
 }
+
+.login-link {
+	padding: 6px;
+}

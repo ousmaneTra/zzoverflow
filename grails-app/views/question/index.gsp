@@ -31,11 +31,11 @@
                                             <div class="icons">
                                                 <div class="up">
                                                     <i class="fa fa-thumbs-o-up"></i>
-                                                    0
+                                                    ${post.upvote}
                                                 </div>
                                                 <div class="down">
                                                     <i class="fa fa-thumbs-o-down"></i>
-                                                    0
+                                                    ${post.downvote}
                                                 </div>
                                             </div>
                                         </div>
