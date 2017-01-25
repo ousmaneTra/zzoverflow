@@ -13,7 +13,7 @@ class QuestionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", solved : "POST"]
 
     def springSecurityService
-    
+    def badgeService    
 
     def index(Integer max) {
 
@@ -74,6 +74,8 @@ class QuestionController {
 
         // Increment nbView
         question.nbView++
+ 
+        badgeService.processQuestionBadges(question)
 
         // Retrieve loggedin user
         def currentUser = springSecurityService.getCurrentUser() 

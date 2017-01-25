@@ -87,7 +87,7 @@
 
 									<div class="profile-info-value">
 										<g:each var="item" in="${currentUser.badges}">
-											<span class="badge">${item.name}</span>
+											<span class="badge">${item.badge.name}</span>
 										</g:each>
 									</div>
 								</div>

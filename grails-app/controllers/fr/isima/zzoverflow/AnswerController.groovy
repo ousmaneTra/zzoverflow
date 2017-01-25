@@ -12,6 +12,7 @@ class AnswerController {
     static allowedMethods = [save: ["POST","GET"], update: "PUT", delete: "DELETE", process:"POST"]
 
     def springSecurityService
+    def badgeService 
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

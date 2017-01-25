@@ -50,7 +50,7 @@ class User implements Serializable {
 	}
 
 	static hasMany = [posts : Post, 
-                        badges  : Badge,
+                        badges  : UserBadge,
 						activities: Activity]
 
 	//static belongsTo = Badge

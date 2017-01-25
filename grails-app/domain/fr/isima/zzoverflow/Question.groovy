@@ -6,7 +6,7 @@ class Question extends Post{
     int nbView
     Answer correct
 
-    static hasMany = [tags : Tag, answers : Answer]
+    static hasMany = [tags : Tag, answers : Answer,badges: QuestionBadge]
 
     static constraints = {
         correct(nullable : true)
