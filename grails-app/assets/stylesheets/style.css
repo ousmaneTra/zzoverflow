@@ -111,3 +111,20 @@ website:   	http://www.themepunch.com
 	display: inline-block;
 	width: 90%;
 }
+
+.login-link {
+	padding: 6px;
+}
+
+.solved-icon {
+	cursor: pointer;
+	padding: 0px 6px 0px 8px;
+}
+
+.nok {
+	color: #ecf0f1;
+}
+
+.ok {
+	color: #1abc9c;
+}

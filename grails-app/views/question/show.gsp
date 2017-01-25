@@ -27,7 +27,7 @@
                                 </div>
 
                                 <div class="icons">
-                                    <img src="images/icon1.jpg" alt=""><img src="images/icon4.jpg" alt=""><img src="images/icon5.jpg" alt=""><img src="images/icon6.jpg" alt="">
+                                    <img src="images/icon1.jpg" alt="">
                                 </div>
                             </div>
                             <div class="posttext pull-left">
@@ -39,14 +39,18 @@
                         <div class="postinfobot">
 
                             <div class="likeblock pull-left">
-                                <a href="#" class="up">
-                                    <i class="fa fa-thumbs-o-up"></i>
-                                    ${question.upvote}
-                                </a>
-                                <a href="#" class="down">
-                                    <i class="fa fa-thumbs-o-down"></i>
-                                    ${question.downvote}
-                                </a>
+                                <div class="upvote up" data-id="${question.id}">
+                                    <i class="fa fa-thumbs-o-up clickable"></i>
+                                    <span id="upvalue${question.id}">
+                                        ${question.upvote}
+                                    </span>
+                                </div>
+                                <div class="downvote down" data-id="${question.id}">
+                                    <i class="fa fa-thumbs-o-down clickable"></i>
+                                    <span id="downvalue${question.id}">
+                                        ${question.downvote}
+                                    </span>
+                                </div>
                             </div>
 
                             <div class="prev pull-left">                                        
@@ -91,10 +95,24 @@
                                     </div>
 
                                     <div class="icons">
-                                        <img src="images/icon3.jpg" alt="">
-                                        <img src="images/icon4.jpg" alt="">
-                                        <img src="images/icon5.jpg" alt="">
-                                        <img src="images/icon6.jpg" alt="">
+                                        <!-- Solved question -->
+                                        <g:if test="${question.correct}">
+                                            <!-- Answer is correct -->
+                                            <g:if test="${question.correct.id == answer.id}">
+                                                <i class="fa fa-3x fa-check-circle solved-icon marksolved ok" data-id="${answer.id}" aria-hidden="true"></i>
+                                            </g:if>                                      
+                                            <g:else>
+                                                <!-- Current user is question owner -->
+                                                <g:if test="${currentUser?.id == question.user.id}">
+                                                    <i class="fa fa-3x fa-check-circle solved-icon marksolved nok" data-id="${answer.id}" aria-hidden="true"></i>                                           
+                                                </g:if>
+                                            </g:else>
+                                        </g:if>
+                                        <g:else>
+                                            <g:if test="${question.user.id == currentUser?.id}">
+                                                <i class="fa fa-3x fa-check-circle solved-icon marksolved nok" data-id="${answer.id}" aria-hidden="true"></i>                                           
+                                            </g:if>
+                                        </g:else>
                                     </div>
                                 </div>
                                 <div class="posttext pull-left">
@@ -105,14 +123,18 @@
                             <div class="postinfobot">
 
                                 <div class="likeblock pull-left">
-                                    <a href="#" class="up">
-                                        <i class="fa fa-thumbs-o-up"></i>
-                                        ${answer.upvote}
-                                    </a>
-                                    <a href="#" class="down">
-                                        <i class="fa fa-thumbs-o-down"></i>
-                                        ${answer.downvote}
-                                    </a>
+                                    <div class="upvote up" data-id="${answer.id}">
+                                        <i class="fa fa-thumbs-o-up clickable"></i>
+                                        <span id="upvalue${answer.id}">
+                                            ${answer.upvote}
+                                        </span>
+                                    </div>
+                                    <div  class="downvote down" data-id="${answer.id}">
+                                        <i class="fa fa-thumbs-o-down clickable"></i>
+                                        <span id="downvalue${answer.id}">
+                                            ${answer.downvote}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 <div class="prev pull-left">                                        
@@ -247,6 +269,105 @@
                 </div>
             </div>
         </div>
+
+
     
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $(".upvote").click(function(){
+                var id = this.getAttribute('data-id')
+                <sec:ifLoggedIn>
+                       $.ajax({
+                            method: "POST",
+                            url: "${g.createLink(controller:'vote',action:'save')}",
+                            data: {                            
+                                'post.id' : id,
+                                'user.id' : ${currentUser.id},
+                                'vote'      : '1'
+                            },
+                            success: function (data) {
+                                $("#upvalue"+id).text(data)
+                            },
+                            error: function (request, status, error) {
+                                alert(error)
+                            },
+                            complete: function () {
+                            }
+                        });
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    alert("You are not logged in. Please log in and try again")
+                </sec:ifNotLoggedIn>
+            });
+            $(".downvote").click(function(){
+                var id = this.getAttribute('data-id')
+                <sec:ifLoggedIn>
+                       $.ajax({
+                            method: "POST",
+                            url: "${g.createLink(controller:'vote',action:'save')}",
+                            data: {                            
+                                'post.id' : id,
+                                'user.id' : ${currentUser.id},
+                                'vote'      : '-1'
+                            },
+                            success: function (data) {
+                                $("#downvalue"+id).text(data)
+                            },
+                            error: function (request, status, error) {
+                                alert(status)
+                                alert(error)
+                                alert(request)
+                            },
+                            complete: function () {
+                            }
+                        });
+                
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    alert("You are not logged in. Please log in and try again")
+                </sec:ifNotLoggedIn>
+            }); 
+            $(".marksolved").click(function(){
+                var answer_id = this.getAttribute('data-id')
+                var element   = $(this)
+                <sec:ifLoggedIn>
+                       $.ajax({
+                            method: "POST",
+                            url: "${g.createLink(controller:'question',action:'solved')}",
+                            data: {   
+                                'question.id' : ${question.id},                         
+                                'answer.id'   : answer_id,
+                                'user.id'     : ${currentUser.id},
+                            },
+                            success: function (data) {
+                                if(data['previous']){
+                                    var previous_correct = $('*[data-id=\''+data['previous']+'\']');
+                                    previous_correct.removeClass('ok')
+                                    previous_correct.addClass('nok')
+                                }
+                                element.removeClass('nok');
+                                element.addClass('ok');
+                            },
+                            error: function (request, status, error) {
+                                alert(status)
+                                alert(error)
+                                alert(request)
+                            },
+                            complete: function () {
+                            }
+                        });
+                
+                </sec:ifLoggedIn>
+                <sec:ifNotLoggedIn>
+                    alert("You are not logged in. Please log in and try again")
+                </sec:ifNotLoggedIn>
+            });            
+        });
+        
+
+    </script>
+
+
     </body>
 </html>

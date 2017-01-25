@@ -2,7 +2,7 @@
 
     <!-- -->
     <div class="sidebarblock">
-        <h3>Most important questions</h3>
+        <h3><g:message code ="default.sidebar.popular.question"/></h3>
         <div class="divline"></div>
         <div class="blocktxt">
             <ul class="cats">
@@ -24,7 +24,7 @@
 
     <!-- -->
     <div class="sidebarblock">
-        <h3>Most popular tag</h3>
+        <h3><g:message code ="default.sidebar.popular.tag"/></h3>
         <div class="divline"></div>
         <div class="blocktxt">
             <form action="#" method="post" class="form">
@@ -53,7 +53,7 @@
     <!-- -->
     <div class="sidebarblock">
         <sec:ifLoggedIn>
-            <h3>My Activity feed</h3>
+            <h3><g:message code ="default.profile.feed"/></h3>
             <g:each var="activity" in="${currentUser.activities}">
                 <div class="divline"></div>
                 <div class="blocktxt">

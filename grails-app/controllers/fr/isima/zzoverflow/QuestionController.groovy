@@ -4,12 +4,13 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
+import grails.converters.JSON
 
 @Secured(['IS_AUTHENTICATED_ANONYMOUSLY']) 
 @Transactional(readOnly = true)
 class QuestionController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", solved : "POST"]
 
     def springSecurityService
     
@@ -137,6 +138,20 @@ class QuestionController {
             }
             '*' { respond question, [status: CREATED] }
         }
+    }
+
+    @Secured('ROLE_USER')
+    @Transactional
+    def solved() {
+        println("solved")
+        def question = Question.get(params.question.id)
+        def previous = (question.correct ? question.correct.id : 0)
+        question.correct  = Answer.get(params.answer.id)
+        def responseData = [
+            'previous': previous,
+            'current' : question.correct.id
+        ]
+        render responseData as JSON
     }
 
     def edit(Question question) {

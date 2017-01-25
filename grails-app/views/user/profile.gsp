@@ -52,7 +52,7 @@
 
 								<span class="label label-purple arrowed-in-right">
 									<i class="ace-icon fa fa-circle smaller-80 align-middle"></i>
-									online
+									<g:message code="default.profile.online"/>
 								</span>
 							</h4>
 
@@ -75,7 +75,7 @@
 								</div>
 
 								<div class="profile-info-row">
-									<div class="profile-info-name"> Joined </div>
+									<div class="profile-info-name"> <g:message code="default.profile.joined"/> </div>
 
 									<div class="profile-info-value">
 										<span><g:formatDate date="${currentUser.dateCreated}" type="date" style="LONG" formatName="default.date.format"/></span>
@@ -120,15 +120,25 @@
 							<g:each var="activity" in="${currentUser.activities}">
 								<div class="profile-activity clearfix">
 									<div>
-										<img class="pull-left" alt="${currentUser.name + ' Avatar' }" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+										<g:if test="${currentUser.avatar}">
+											<img class="avatar" src="${createLink(controller:'user', action:'avatar_image', id:currentUser.id)}" />
+										</g:if>
+										<g:else>
+											<asset:image class="pull-left" alt=" Avatar" id="avatar2" src="user/1.jpg" alt="" />
+										</g:else>
 										 ${currentUser.name}
 										<g:if test="${activity.type.toString() == 'ASK_QUESTION'}">
-											asked a <g:link action="show" controller="question" id="${activity.question.id}">question</g:link>
+											<g:message code="default.activity.asked"/> <g:link action="show" controller="question" id="${activity.question.id}">question</g:link>
 											<br/>
 											${activity?.question?.title}
 										</g:if>
 										<g:if test="${activity.type.toString() == 'ANSWER_QUESTION'}">
-											answered a <g:link action="show" controller="question" id="${activity.answer.question.id}">question</g:link>
+											<g:message code="default.activity.answered"/> <g:link action="show" controller="question" id="${activity.answer.question.id}">question</g:link>
+											<br/>
+											${activity?.answer?.body}
+										</g:if>
+										<g:if test="${activity.type.toString() == 'EARN_BAGDE'}">
+											<g:message code="default.activity.earned"/> <g:link action="show" controller="question" id="${activity.answer.question.id}">question</g:link>
 											<br/>
 											${activity?.answer?.body}
 										</g:if>

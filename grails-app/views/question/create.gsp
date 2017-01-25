@@ -6,7 +6,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'question.label', default: 'Question')}" />
         <title>
-            <g:message code="default.create.label" args="[entityName]" /> - ZZOverflow
+            <g:message code="default.question.ask.label"/> - ZZOverflow
         </title>
         <!--asset:stylesheet src="bootstrap.css"/-->
         <asset:stylesheet src="question/create.css"/>
@@ -27,22 +27,13 @@
     </head>
     <body>
         <a href="#create-question" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li>
-                        <g:link class="list" action="index">
-                            <g:message code="default.list.label" args="[entityName]" />
-                        </g:link>
-                </li>
-            </ul>
-        </div>
         <div class="container">
             <div class="row">
                 <g:form url="[controller: 'question', action: 'save', method : POST]" role="form" id="contact-form" class="contact-form">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <g:textField class="form-control" name="title"  id="title" placeholder="Title : What's your programming question? Be specific." type="text"  />
+                                        <g:textField class="form-control" name="title"  id="title" placeholder="${message(code: 'default.question.title.placeholder.label')}" type="text"  />
                                     </div>
                                 </div>
                             </div>
@@ -52,7 +43,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <g:textArea class="form-control textarea" rows="3" name="body" id="Message" placeholder="Question body" /> 
+                                        <g:textArea class="form-control textarea" rows="3" name="body" id="Message" placeholder="${message(code: 'default.question.body.placeholder.label')}" /> 
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +56,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn main-btn pull-right">Post Your Question</button>
+                                    <button type="submit" class="btn main-btn pull-right"><g:message code="default.question.post"/></button>
                                 </div>
                             </div>
                 </g:form>
