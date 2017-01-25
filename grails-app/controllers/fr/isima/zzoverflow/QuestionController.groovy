@@ -147,6 +147,7 @@ class QuestionController {
         def question = Question.get(params.question.id)
         def previous = (question.correct ? question.correct.id : 0)
         question.correct  = Answer.get(params.answer.id)
+        question.correct.user.reputation+=20
         def responseData = [
             'previous': previous,
             'current' : question.correct.id
