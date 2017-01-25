@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="postinfo pull-left">
                                         <div class="comments">
-                                            <g:if test="${post.solved}">
+                                            <g:if test="${post.correct}">
                                                 <div class="commentbg-solved">
                                             </g:if>
                                             <g:else>
