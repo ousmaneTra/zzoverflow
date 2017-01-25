@@ -12,6 +12,7 @@
         <g:layoutHead/>
 
         <asset:javascript src="application.js"/>
+        <%@ page import="org.springframework.web.servlet.support.RequestContextUtils" %>
 
     </head>
     <body>
@@ -28,7 +29,24 @@
                         </div>
                         <div class="col-lg-3 col-xs-9 col-sm-5 col-md-3 selecttopic">
                             <div>
-                                <a  class="logo-text" href="${createLink(uri: '/')}">ZZOverflow</a> 
+                                <div style="display: inline;">
+                                    <a  class="logo-text" href="${createLink(uri: '/')}">ZZOverflow</a>
+                                </div> 
+                                <div class="dropdown" style="display: inline;">
+                                    <a data-toggle="dropdown" href="#" style="color: #f48024;" >
+                                        <g:set var="lang" value="${RequestContextUtils.getLocale(request)}" />
+                                        .${lang}
+                                        <b class="caret"></b>
+                                    </a> 
+                                    <ul class="dropdown-menu" role="menu" >
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-1" href="${createLink(uri: '/?lang=en')}">.en</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a role="menuitem" tabindex="-2" href="${createLink(uri: '/?lang=fr')}">.fr</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 search hidden-xs hidden-sm col-md-3">
