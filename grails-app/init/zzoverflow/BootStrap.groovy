@@ -21,6 +21,7 @@ class BootStrap {
         
 
         def badgeType   = new BadgeType(name :'question')
+        badgeType.save()
                             
 
         def badge       = new Badge(name : 'altruist', requirement : requirement, badgeType : badgeType )
@@ -86,7 +87,6 @@ class BootStrap {
         tag.save()
         tag2.save()
         requirement.save()
-        badgeType.save()
         badge.save()
         question.save()
         question2.save()
