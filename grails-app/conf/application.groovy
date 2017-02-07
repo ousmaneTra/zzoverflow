@@ -52,7 +52,7 @@ grails.plugin.springsecurity.ui.register.emailFrom = 'zzoverflow@gmail.com'
 grails.plugin.springsecurity.ui.forgotPassword.emailFrom = 'zzoverflow@gmail.com'
 
 //Actuator endpoints
-server.port=9090
+server.port=8080
 
 //Spring cloud Eureka configs
 spring.application.name='zzoverflow'
