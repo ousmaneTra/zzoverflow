@@ -8,6 +8,8 @@ class BootStrap {
     def init = { servletContext ->
     
         def userRole = new Role('ROLE_USER').save()
+        def adminRole = new Role('ROLE_ADMIN').save()
+        def actuatorRole = new Role('ROLE_ACTUATOR').save() //
 
         def me       = new User(username: 'user@gmail.com', password: 'pass', name:'USER user').save()
 
@@ -28,6 +30,8 @@ class BootStrap {
         UserBadge.create user, badge
 
         UserRole.create user, userRole
+        UserRole.create user, adminRole
+        UserRole.create user, actuatorRole
                         
         def user2       = new User(username : 'john', password : 'john', name: 'John Doe') 
                                 .save()  
