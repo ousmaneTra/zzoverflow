@@ -6,6 +6,7 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'fr.isima.zzove
 grails.plugin.springsecurity.authority.className = 'fr.isima.zzoverflow.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
+    [pattern: '/eureka/**',         access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
 	[pattern: '/index',          access: ['permitAll']],
 	[pattern: '/index.gsp',      access: ['permitAll']],
@@ -49,3 +50,11 @@ grails {
 
 grails.plugin.springsecurity.ui.register.emailFrom = 'zzoverflow@gmail.com'
 grails.plugin.springsecurity.ui.forgotPassword.emailFrom = 'zzoverflow@gmail.com'
+
+//Actuator endpoints
+server.port=8080
+
+//Spring cloud Eureka configs
+spring.application.name='zzoverflow'
+eureka.client.serviceUrl.defaultZone='http://localhost:8761/eureka/'
+
