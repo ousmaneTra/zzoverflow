@@ -1,5 +1,9 @@
 ---
 grails:
+    cors:
+        enabled: true
+---
+grails:
     profile: web
     codegen:
         defaultPackage: zzoverflow
@@ -20,7 +24,7 @@ spring:
 
 # Spring Actuator Endpoints are Disabled by Default
 endpoints:
-    enabled: false
+    enabled: true
     jmx:
         enabled: true
 
