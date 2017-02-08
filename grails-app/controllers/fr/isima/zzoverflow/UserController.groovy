@@ -3,6 +3,7 @@ package fr.isima.zzoverflow
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
+import grails.converters.JSON
 
 @Secured('ROLE_USER')
 @Transactional(readOnly = true)
@@ -153,5 +154,11 @@ class UserController {
         OutputStream out = response.outputStream
         out.write(avatarUser.avatar)
         out.close()
+    }
+
+    //Return current user
+    def current()
+    {
+        render springSecurityService.currentUser as JSON
     }
 }

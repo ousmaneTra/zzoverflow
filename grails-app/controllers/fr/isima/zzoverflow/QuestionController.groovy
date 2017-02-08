@@ -260,5 +260,12 @@ class QuestionController {
             result += diff.seconds ? diff.seconds + " sec ago" : "" 
                 return result;
     }
+
+    def getAll(Integer max) {
+        params.max   = Math.min(max ?: 10, 100)
+        params.sort  = "dateCreated"
+        params.order = "desc"
+        render Question.list(params) as JSON
+    }
     
 }
