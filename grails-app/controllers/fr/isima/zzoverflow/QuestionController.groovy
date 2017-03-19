@@ -91,6 +91,7 @@ class QuestionController {
         [question:question, currentUser : currentUser]
     }
 
+
     @Secured('ROLE_USER')
     @Transactional
     def save() {
@@ -142,6 +143,8 @@ class QuestionController {
             '*' { respond question, [status: CREATED] }
         }
     }
+
+
 
     @Secured('ROLE_USER')
     @Transactional
@@ -272,5 +275,16 @@ class QuestionController {
         def meta = questionService.getAllMeta(params)
         render meta as JSON
     }
+
+    @Transactional
+    def add() {
+
+        def params = request.JSON
+
+        def response = questionService.createQuestion(params)
+        
+        render response as JSON
+    }
+
     
 }

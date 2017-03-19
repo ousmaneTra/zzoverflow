@@ -5,9 +5,30 @@ import grails.transaction.Transactional
 @Transactional
 class QuestionService {
 
+    def tagService
+
     public final static int MAX_TITLE_SIZE = 55
 
     public final static int MAX_BODY_SIZE = 140
+
+    def createQuestion(params){
+
+        params.tags = tagService.makeTagList(params.tags)
+
+        def question = new Question(params)
+
+        if (question == null) {
+            return null
+        }
+
+        if (question.hasErrors()) {
+            return null
+        }
+
+        question.save flush:true
+
+        return question
+    }
 
     def getAll(params) {
         params.max   = 3
