@@ -30,6 +30,7 @@ class VoteController {
     @Secured('ROLE_USER')
     @Transactional
     def save() {
+        println(params)
         def vote = Vote.findByUserAndPost(User.get(params.user.id), Post.get(params.post.id))
         def post = Post.get(params.post.id)
         def activity = new Activity()
@@ -63,6 +64,45 @@ class VoteController {
         }
         render (params.vote == '1' ? post.upvote : post.downvote )
     }
+
+
+    def process() {
+        def params = request.JSON
+        println(params)
+        def vote = Vote.findByUserAndPost(User.get(params.user), Post.get(params.post))
+        def post = Post.get(params.post)
+        def activity = new Activity()
+        if(!vote){
+            if(params.vote == '1'){
+                params.up = true
+                post.upvote++
+                post.user.reputation+=15
+                
+            }
+            else {
+                params.up = false
+                post.downvote--
+            }
+            //Create new Activity
+            activity.post = post 
+            activity.user = springSecurityService.getCurrentUser()
+
+            vote = new Vote(params)
+            vote.save flush:true
+            if(post instanceof Answer){
+                badgeService.processAnswerBadges(post)
+                (params.vote == '1' ? activity.setType(ActivityType.UPVOTE_ANSWER) : activity.setType(ActivityType.DOWNVOTE_ANSWER) )
+            }
+            else if (post instanceof Question){
+                badgeService.processQuestionBadges(post)
+                (params.vote == '1' ? activity.setType(ActivityType.UPVOTE_QUESTION) : activity.setType(ActivityType.DOWNVOTE_QUESTION) )
+            }
+            activity.save flush:true
+
+        }
+        render (params.vote == '1' ? post.upvote : post.downvote )
+    }
+
 
     def edit(Vote vote) {
         respond vote
