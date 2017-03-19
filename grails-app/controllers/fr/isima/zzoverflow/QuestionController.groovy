@@ -13,7 +13,8 @@ class QuestionController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", solved : "POST"]
 
     def springSecurityService
-    def badgeService    
+    def badgeService 
+    def questionService  
 
     def index(Integer max) {
 
@@ -32,7 +33,7 @@ class QuestionController {
         }
 
         // Retireve the most important questions for right sidebar
-        params.max   = 7
+        params.max   = 7 
         params.sort  = "upvote"
         params.order = "desc"
         def importantQst    = Question.list(params)
@@ -262,10 +263,14 @@ class QuestionController {
     }
 
     def getAll(Integer max) {
-        params.max   = Math.min(max ?: 10, 100)
-        params.sort  = "dateCreated"
-        params.order = "desc"
-        render Question.list(params) as JSON
+        def questions = questionService.getAll(params)
+        JSON.use('deep')
+        render questions as JSON
+    }
+
+    def getAllMeta() {
+        def meta = questionService.getAllMeta(params)
+        render meta as JSON
     }
     
 }

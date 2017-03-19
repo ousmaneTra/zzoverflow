@@ -50,7 +50,8 @@ class BootStrap {
                                 body :  'Today, were looking at three particularly interesting stories. Pinterest added a new location-based feature on Wednesday that uses Place Pins as a way to map out vacations and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for 8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google Wallet is offering a debit card that can take out cash from.', 
                                 nbView : 200000, 
                                 upvote : 15,
-                                downvote : 0)
+                                downvote : 0,
+                                duration : "")
                                 .addToTags(tag)
 
         question.setUser(user)   
@@ -64,7 +65,8 @@ class BootStrap {
                                 body :  "Today, we're looking at three particularly interesting stories. Pinterest added a new location-based feature on Wednesday that uses Place Pins as a way to map out vacations and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for 8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google Wallet is offering a debit card that can take out cash from.",
                                 nbView : 1, 
                                 upvote : 11,
-                                downvote : 0)
+                                downvote : 0,
+                                duration : "")
                                 .addToTags(tag2)
         question2.setUser(user) 
         question2.save() 
@@ -75,7 +77,8 @@ class BootStrap {
                                 body :  " Eric Schmidt has seen the future of magazines, and it's on the tablet. At a Magazine Publishers Association. Pinterest added a new location-based feature on Wednesday that uses Place Pins as a way to map out vacations and favorite areas. Southwest Airlines is providing Wi-Fi access from gate to gate for 8 per day through an onboard hotspot. And in an effort to ramp up its user base, Google Wallet is offering a debit card that can take out cash from.",
                                 nbView : 1, 
                                 upvote : 0,
-                                downvote : 0)
+                                downvote : 0,
+                                duration : "")
                                 .addToTags(tag) 
         question3.setUser(user)
         question3.save() 
