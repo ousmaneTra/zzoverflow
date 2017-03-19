@@ -14,7 +14,8 @@ class QuestionController {
 
     def springSecurityService
     def badgeService 
-    def questionService  
+    def questionService
+    def featureService  
 
     def index(Integer max) {
 
