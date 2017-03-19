@@ -4,11 +4,21 @@ spring:
         config:
             uri: http://localhost:8888
 ---
+#Features
 eureka:
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka/
         enabled: false
+feature:
+    registration:
+        enabled: true
+    signin:
+        enabled: true
+    askquestion:
+        enabled: true
+    answerquestion:
+        enabled: true
 ---
 grails:
     cors:
@@ -18,7 +28,7 @@ grails:
     profile: web
     codegen:
         defaultPackage: zzoverflow
-    spring:
+    spring:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
         transactionManagement:
             proxies: false
 info:

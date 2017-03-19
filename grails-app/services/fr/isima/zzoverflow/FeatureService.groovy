@@ -11,6 +11,12 @@ class FeatureService {
     @Value('${feature.askquestion.enabled}')
     boolean askQuestionFeature
 
+    @Value('${feature.answerquestion.enabled}')
+    boolean answerQuestionFeature
+
+    @Value('${feature.signin.enabled}')
+    boolean signInFeature
+
     
     def isEnable(String feature) {
         boolean result = false 
@@ -20,6 +26,12 @@ class FeatureService {
                 break
             case "askQuestion":
                 result = askQuestionFeature
+                break
+            case "answerQuestion":
+                result = answerQuestionFeature
+                break
+            case "signIn":
+                result = signInFeature
                 break
             default : 
                 break
