@@ -276,7 +276,7 @@ class QuestionController {
         render meta as JSON
     }
 
-    @Transactional
+
     def add() {
 
         def params = request.JSON
@@ -284,6 +284,17 @@ class QuestionController {
         def response = questionService.createQuestion(params)
         
         render response as JSON
+    }
+
+    def getQuestion() {
+
+        def id = params.id
+
+        def question = questionService.getQuestion(Integer.parseInt(id))
+
+        JSON.use('deep')
+
+        render question as JSON
     }
 
     

@@ -57,6 +57,13 @@ class QuestionService {
         return result
     }
 
+    def getQuestion(int index) {
+        
+        println(index)
+        return Question.get(index)
+
+    }
+
 
     def getAllMeta(params) {
         

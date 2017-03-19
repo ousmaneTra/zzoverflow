@@ -15,6 +15,7 @@ class UrlMappings {
         }
         "/api/user" (controller:'user',action:'current')
         "/api/questions" (controller: 'question',action:'getAll')
+        "/api/question/get" (controller: 'question',action:'getQuestion')
         "/api/question/add" (controller: 'question',action:'add')
         "/api/metaQuestions" (controller: 'question',action:'getAllMeta')
         "500"(view:'/error')
