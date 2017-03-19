@@ -83,8 +83,6 @@ class AnswerController {
 
        def params = request.JSON
 
-       println(request.JSON)
-
         def answer = new Answer(
                                 body : params.body, 
                                 upvote : 0, 
