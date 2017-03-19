@@ -268,7 +268,6 @@ class QuestionController {
 
     def getAll(Integer max) {
         def questions = questionService.getAll(params)
-        print featureService.isEnable("registration")
         JSON.use('deep')
         render questions as JSON
     }
