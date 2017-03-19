@@ -4,6 +4,7 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.plugin.springsecurity.annotation.Secured
 import grails.plugin.springsecurity.SpringSecurityService
+import grails.converters.JSON
 
 @Secured(['IS_AUTHENTICATED_ANONYMOUSLY']) 
 @Transactional(readOnly = true)
@@ -75,6 +76,26 @@ class AnswerController {
             println(session)
         }
         redirect(action : "save")
+
+    }
+
+    def add(){
+
+       def params = request.JSON
+
+       println(request.JSON)
+
+        def answer = new Answer(
+                                body : params.body, 
+                                upvote : 0, 
+                                downvote : 0,
+                                user : User.get(params.user), 
+                                question : Question.get(params.question)
+                                ) 
+
+        answer.save flush:true
+        
+        render answer as JSON
 
     }
 
