@@ -14,7 +14,8 @@ class QuestionController {
 
     def springSecurityService
     def badgeService 
-    def questionService  
+    def questionService
+    def featureService  
 
     def index(Integer max) {
 
@@ -267,6 +268,7 @@ class QuestionController {
 
     def getAll(Integer max) {
         def questions = questionService.getAll(params)
+        print featureService.isEnable("registration")
         JSON.use('deep')
         render questions as JSON
     }

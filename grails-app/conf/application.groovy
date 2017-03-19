@@ -28,6 +28,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 	[pattern: '/**/css/**',      filters: 'none'],
 	[pattern: '/**/images/**',   filters: 'none'],
 	[pattern: '/**/favicon.ico', filters: 'none'],
+	[pattern: '/env', filters: 'none'],
 	[pattern: '/api/**',
         filters: 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter'
     ],
@@ -60,6 +61,6 @@ grails.plugin.springsecurity.ui.forgotPassword.emailFrom = 'zzoverflow@gmail.com
 server.port=8080
 
 //Spring cloud Eureka configs
-spring.application.name='zzoverflow'
-eureka.client.serviceUrl.defaultZone='http://localhost:8761/eureka/'
+// spring.application.name='zzoverflow'
+// eureka.client.serviceUrl.defaultZone='http://localhost:8761/eureka/'
 
